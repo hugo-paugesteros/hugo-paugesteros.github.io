@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/theme/black.css">
+    <style>
+      :root {
+          --r-main-font: "Atkinson Hyperlegible Next";
+          --r-heading-font: "Atkinson Hyperlegible Next";
+          --r-main-font-size: 20px;
+          --r-heading-text-transform: none;
+      }
+      .box {
+          border: 2px solid #3498db;
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+          background-color: rgba(52, 152, 219, 0.1);
+      }
+      
+    </style>
+    <script type="module" src="oscillator.js"> </script>
+  </head>
+  <body> 
+    <div class="reveal">
+      <div class="slides">
+        <section data-timing="120">
+          <h1>Ondes mécaniques</h1>
+          <p>Hugo Pauget Ballesteros</p>
+          <p>hugo.pauget@dalembert.upmc.fr</p>
+        </section>
+        <section data-timing="300">
+          <h1>Présentation du cours</h1>
+          <section></section>
+          <section>
+            <h2>Contenus</h2>
+            <ul>
+              <li>Systèmes discrets
+                <ul>
+                  <li>Non-amorti
+                    <ul>
+                      <li>Libre
+                        <li>Forcé</li>
+                      </li>
+                    </ul>
+                    <li>Amorti
+                      <ul>
+                        <li>Libre
+                          <li>Forcé</li>
+                        </li>
+                      </ul>
+                    </li>
+                  </li>
+                </ul>
+                <li>Systèmes continus
+                  <ul>
+                    <li>Vibrations longitudinales
+                      <ul>
+                        <li>Libre
+                          <li>Forcé</li>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>Vibrations transverses
+                      <ul>
+                        <li>Libre
+                          <li>Forcé</li>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>Organisation de l'UE</h2>
+            <p>
+              <ul>
+                <li>4 Cours</li>
+                <li>5 TDs <em>(en demi-groupes)</em></li>
+                <li>1 CC</li>
+                <li>1 DM, facultatif, après le cours n°2</li>
+              </ul>
+            </p>
+            <p>
+              <ul>
+                <li>Polycopié</li>
+                <li>Slides</li>
+                <li>Énoncés de TD</li>
+              </ul>
+            </p>
+          </section>
+          <section>
+            <h2>Pourquoi ?</h2>
+            <bloquote>
+              <p>"Tout est un système masse-ressort" </p>
+              <p style="text-align: right">- Moi</p>
+            </bloquote>
+          </section>
+        </section>
+        <section>
+          <h1>Oscillateur libre non-amorti</h1>
+          <section data-timing="120">
+            <h2>Schéma</h2>
+            <figure>
+              <figure class="free-oscillator">
+                <style>
+                  figure svg {
+                      path {
+                          stroke: white !important;
+                      }
+                      text {
+                          fill: white !important;
+                      }
+                      g[inkscape\:label="cart"] rect {
+                          fill: #747474 !important;
+                      }
+                  }
+                  .free-oscillator svg {
+                      g[inkscape\:label="damper"] {
+                          display: none;
+                      }
+                      g[inkscape\:label="external"] {
+                          display: none;
+                      }
+                  }
+                </style><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="421.65353"
+   height="230.31496"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="oscillator.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4834111"
+     inkscape:cx="182.34999"
+     inkscape:cy="175.94583"
+     inkscape:current-layer="g3"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-global="true"
+     units="mm"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="810"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-text-baseline="true"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       id="grid3"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="1.8897638"
+       spacingy="0.37795276"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-822.04797)">
+    <path
+       style="fill:#000000;stroke-width:0.76809;paint-order:fill markers stroke"
+       d="M 341.02966,981.50208 V 875.20288"
+       id="path3" />
+    <g
+       id="g2"
+       inkscape:label="cart">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3015"
+         width="230.31496"
+         height="106.29921"
+         x="110.71471"
+         y="875.20288" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z"
+         transform="translate(-119.01746,797.2501)" />
+      <path
+         transform="translate(43.306358,798.26026)"
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020-1"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="209.25821"
+         y="938.0545"
+         id="text3921"><tspan
+           sodipodi:role="line"
+           id="tspan3923"
+           x="209.25821"
+           y="938.0545"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">m</tspan></text>
+    </g>
+    <g
+       id="g1"
+       inkscape:label="spring">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.69538653px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 39.907238,963.60694 13.71029,0.22321"
+         id="path3826"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 8.85827,35.43307"
+         id="path3828"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 -8.85827,35.43307"
+         id="path3848"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 75.281618,981.50205 8.858273,-35.43307 8.85826,35.43307"
+         id="path3850"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 97.427281,963.78552 -4.42913,17.71653"
+         id="path3852"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 57.565078,981.50205 -3.94755,-17.6719"
+         id="path3854"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 110.7147,963.54085 -13.287419,0.24467"
+         id="path3860"
+         inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:oblique;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.207367"
+         y="1012.0769"
+         id="text3929"><tspan
+           sodipodi:role="line"
+           id="tspan3931"
+           x="66.207367"
+           y="1012.0769"
+           style="font-size:36px;line-height:1.25;font-family:sans-serif">k</tspan></text>
+    </g>
+    <g
+       id="g3992"
+       inkscape:label="damper">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3862"
+         d="m 39.848548,910.6359 35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3864"
+         d="m 75.281608,892.91937 c 0,46.81735 0,23.62205 0,35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3866"
+         d="m 57.565078,892.91937 35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3868"
+         d="m 92.998151,892.91937 0,35.43307 -35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3870"
+         d="m 92.998151,910.6359 17.716539,0"
+         style="fill:none;stroke:#000000;stroke-width:1.0015748;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.423347"
+         y="884.0611"
+         id="text3925"><tspan
+           sodipodi:role="line"
+           id="tspan3927"
+           x="66.423347"
+           y="884.0611"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">c</tspan></text>
+    </g>
+    <path
+       style="fill:#999999;stroke:#000000;stroke-width:1.0629921;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 22.1453,875.1876 0,141.75 0,17.7187 380.90625,0 0,-17.7187 -363.187502,0 0,-141.75 -17.718748,0 z"
+       id="rect3916"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3"
+       inkscape:label="external">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="360.97696"
+         y="900.6864"
+         id="text3921-6"><tspan
+           sodipodi:role="line"
+           id="tspan3923-7"
+           x="360.97696"
+           y="900.6864"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">f(t)</tspan></text>
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:1.0015748;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;marker-end:url(#Triangle);stroke-miterlimit:4"
+         d="m 341.02966,925.18716 h 40.57578"
+         id="path4"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
+
+                <figcaption>Un oscillateur simple.</figcaption>
+              </figure>
+            </figure>
+          </section>
+          <section data-background-color="#345e3e" data-timing="180">
+            <h2>📝 Exercice : Mise en équation</h2>
+            <div class="instructions">
+              <ol>
+                <li>Faire le bilan des forces, en indiquant les dimensions de chaque terme</li>
+                <li>Trouver l'équation différentielle régissant le mouvement de la masse</li>
+              </ol>
+            </div>
+          </section>
+          <section data-timing="120">
+            <h2>Mise en équation</h2>
+            <p>Le PFD appliqué à la masse donne :</p>
+            <p>$ m \mathbf{a} = - \mathbf{F_k} $</p>
+            <p>$ m \ddot{x} = -F_k = -k x $</p>
+            <p>C'est-à-dire :</p>
+            <p class="box">$\ddot{x} + \omega_0^2 x = 0 $</p>
+            <p>où $ \omega_0 \stackrel{\text{def}}{=} \sqrt{\frac{k}{m}} $ est appelée <em>pulsation propre</em>.</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Résolution</h2>
+            <div class="instructions">
+              <p>Résoudre l'équation différentielle, en explicitant la démarche</p>
+            </div>
+          </section>
+          <section data-timing="180">
+            <h2>Résolution</h2>
+            <p>Nous voulons résoudre l'EDOL d'ordre 2 :</p>
+            <p>$ \ddot{x} + \omega_0^2 x = 0 $</p>
+            <p>Elle a pour équation caractéristique :</p>
+            <p>$ r^2 + \omega_0^2 = 0 $</p>
+            <p>Qui admet deux racines conjuguées complexes :</p>
+            <p>$ r_1 = - i \omega_0 \text{ et } r_2 = i \omega_0 $</p>
+            <p>Les solutions sont donc de la forme :</p>
+            <p class="box">$ \lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t) $</p>
+            <p>où $ \lambda $ et $ \mu $ sont déterminées par les conditions initiales.</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Application</h2>
+            <div class="instructions">
+              <p>Donnez les valeurs de $\lambda$ et $\mu$ en fonction de $x_0$ et $v_0$, position et vitesse initiale du système.</p>
+            </div>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Écritures</h2>
+            <div class="instructions">
+              <p>Montrez que les écritures suivantes sont équivalentes :</p>
+              <ul>
+                <li>$ C e^{i \omega_0 t} + e^{-i \omega_0 t} $</li>
+                <li>$ \lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t) $</li>
+                <li>$ X \sin(\omega_0 t + \phi) $</li>
+              </ul>
+            </div>
+          </section>
+          <section data-timing="300">
+            <h2>Simulation</h2>
+            <spring-mass-damper></spring-mass-damper>
+          </section>
+          <section data-background-color="#34415e" data-timing="300">
+            <h2>🙋 Des questions ?</h2>
+          </section>
+        </section>
+        <section>
+          <h1>Petit détour : une autre approche</h1>
+          <section data-timing="180">
+            <h2>Le formalisme de Lagrange</h2>
+            <p>Plutôt que de regarder les vecteurs forces, on fait un bilan énergétique.</p>
+            <ul>
+              <li class="fragment">Énergie cinétique : $T = \frac{1}{2} m \dot{x}^2$</li>
+              <li class="fragment">Énergie potentielle (force de rappel) : $V = \frac{1}{2} k x^2$</li>
+            </ul>
+            <p class="fragment">Le Lagrangien est la différence des deux : </p>
+            <p class="fragment box">$L \stackrel{\text{def}}{=} T - V$</p>
+          </section>
+          <section data-timing="120">
+            <h2>L'équation d'Euler-Lagrange</h2>
+            <p>On peut démontrer que le PFD équivaut à la relation suivante :</p>
+            <p>$$ \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) - \frac{\partial L}{\partial x} = 0 $$</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Application au cas libre</h2>
+            <div class="instructions">
+              <p>En utilisant l'expression de $L$, retrouvez l'équation différentielle du mouvement.</p>
+              <p>(Indice : calculez d'abord $\frac{\partial L}{\partial \dot{x}}$, puis $\frac{\partial L}{\partial x}$)</p>
+            </div>
+          </section>
+          <section data-timing="120">
+            <h2>Ça marche !</h2>
+            <p>On retrouve exactement :</p>
+            <p>$$ m \ddot{x} + k x = 0 $$</p>
+            <p>Cette approche est parfois plus simple à mettre en œuvre, notamment lorsque l'on veut choisir un système de coordonnées non-cartésien (voir TD1).</p>
+          </section>
+          <section data-background-color="#34415e" data-timing="300">
+            <h2>🙋 Des questions ?</h2>
+          </section>
+        </section>
+        <section>
+          <h1>Oscillateur forcé non-amorti</h1>
+          <section data-timing="120">
+            <h2>Schéma</h2>
+            <figure>
+              <figure class="forced-oscillator">
+                <style>
+                  .forced-oscillator svg {
+                      g[inkscape\:label="damper"] {
+                          display: none;
+                      }
+                  }
+                </style><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="421.65353"
+   height="230.31496"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="oscillator.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4834111"
+     inkscape:cx="182.34999"
+     inkscape:cy="175.94583"
+     inkscape:current-layer="g3"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-global="true"
+     units="mm"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="810"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-text-baseline="true"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       id="grid3"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="1.8897638"
+       spacingy="0.37795276"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-822.04797)">
+    <path
+       style="fill:#000000;stroke-width:0.76809;paint-order:fill markers stroke"
+       d="M 341.02966,981.50208 V 875.20288"
+       id="path3" />
+    <g
+       id="g2"
+       inkscape:label="cart">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3015"
+         width="230.31496"
+         height="106.29921"
+         x="110.71471"
+         y="875.20288" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z"
+         transform="translate(-119.01746,797.2501)" />
+      <path
+         transform="translate(43.306358,798.26026)"
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020-1"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="209.25821"
+         y="938.0545"
+         id="text3921"><tspan
+           sodipodi:role="line"
+           id="tspan3923"
+           x="209.25821"
+           y="938.0545"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">m</tspan></text>
+    </g>
+    <g
+       id="g1"
+       inkscape:label="spring">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.69538653px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 39.907238,963.60694 13.71029,0.22321"
+         id="path3826"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 8.85827,35.43307"
+         id="path3828"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 -8.85827,35.43307"
+         id="path3848"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 75.281618,981.50205 8.858273,-35.43307 8.85826,35.43307"
+         id="path3850"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 97.427281,963.78552 -4.42913,17.71653"
+         id="path3852"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 57.565078,981.50205 -3.94755,-17.6719"
+         id="path3854"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 110.7147,963.54085 -13.287419,0.24467"
+         id="path3860"
+         inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:oblique;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.207367"
+         y="1012.0769"
+         id="text3929"><tspan
+           sodipodi:role="line"
+           id="tspan3931"
+           x="66.207367"
+           y="1012.0769"
+           style="font-size:36px;line-height:1.25;font-family:sans-serif">k</tspan></text>
+    </g>
+    <g
+       id="g3992"
+       inkscape:label="damper">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3862"
+         d="m 39.848548,910.6359 35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3864"
+         d="m 75.281608,892.91937 c 0,46.81735 0,23.62205 0,35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3866"
+         d="m 57.565078,892.91937 35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3868"
+         d="m 92.998151,892.91937 0,35.43307 -35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3870"
+         d="m 92.998151,910.6359 17.716539,0"
+         style="fill:none;stroke:#000000;stroke-width:1.0015748;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.423347"
+         y="884.0611"
+         id="text3925"><tspan
+           sodipodi:role="line"
+           id="tspan3927"
+           x="66.423347"
+           y="884.0611"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">c</tspan></text>
+    </g>
+    <path
+       style="fill:#999999;stroke:#000000;stroke-width:1.0629921;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 22.1453,875.1876 0,141.75 0,17.7187 380.90625,0 0,-17.7187 -363.187502,0 0,-141.75 -17.718748,0 z"
+       id="rect3916"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3"
+       inkscape:label="external">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="360.97696"
+         y="900.6864"
+         id="text3921-6"><tspan
+           sodipodi:role="line"
+           id="tspan3923-7"
+           x="360.97696"
+           y="900.6864"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">f(t)</tspan></text>
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:1.0015748;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;marker-end:url(#Triangle);stroke-miterlimit:4"
+         d="m 341.02966,925.18716 h 40.57578"
+         id="path4"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
+
+                <figcaption>Un oscillateur forcé.</figcaption>
+              </figure>
+            </figure>
+          </section>
+          <section data-timing="120">
+            <h2>Mise en équation</h2>
+            <p>Le PFD appliqué à la masse :</p>
+            <p>$$ m \mathbf{a} = - \mathbf{F_k} + \mathbf{F_e} $$</p>
+            <p>$$ m \ddot{x} = -k x + F_e $$</p>
+            <p>Ce qui nous donne l'équation différentielle :</p>
+            <div class="box">
+              <p>$$ \ddot{x} + \omega_0^2 x = \frac{F_e(t)}{m} $$</p>
+            </div>
+            <p>On étudie une force sinusoïdale : $F_e(t) = F_0 \cos(\omega t)$.</p>
+          </section>
+          <section data-timing="180">
+            <h2>Résolution</h2>
+            <p>On cherche la solution sous la forme $x(t) = x_h(t) + x_p(t)$.</p>
+            <ol>
+              <li>Solution homogène ($x_h$) : déjà vue (oscillations libres).</li>
+              <li>Solution particulière ($x_p$) : liée à la force d'excitation.</li>
+            </ol>
+            <p>Pour $x_p(t)$, on teste une solution de la forme :</p>
+            <p>$$ x_p(t) = A \cos(\omega t) $$</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Résolution</h2>
+            <div class="instructions">
+              <p>À quelle(s) condition(s) $x_p(t)$ pourrait être solution de l'équation différentielle ?</p>
+            </div>
+          </section>
+          <section data-timing="120">
+            <h2>Calcul de l'amplitude</h2>
+            <p>En dérivant deux fois :</p>
+            <p>$$ \dot{x}_p(t) = -A \omega \sin(\omega t) $$</p>
+            <p>$$ \ddot{x}_p(t) = -A \omega^2 \cos(\omega t) $$</p>
+            <p>En injectant dans l'équation différentielle :</p>
+            <p>$$ -A \omega^2 \cos(\omega t) + \omega_0^2 A \cos(\omega t) = \frac{F_0}{m} \cos(\omega t) $$</p>
+            <p>$$ A(\omega_0^2 - \omega^2) = \frac{F_0}{m} $$</p>
+          </section>
+          <section data-timing="120">
+            <h2>Solution complète</h2>
+            <p>L'amplitude de la réponse est :</p>
+            <p>$$ A = \frac{F_0/m}{\omega_0^2 - \omega^2} $$</p>
+            <p>La solution complète s'écrit :</p>
+            <p class="box">$$ x(t) = \underbrace{\lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t)}_{x_h(t)} + \underbrace{\frac{F_0/m}{\omega_0^2 - \omega^2} \cos(\omega t)}_{x_p(t)} $$</p>
+          </section>
+          <section data-timing="300">
+            <h2>Simulation</h2>
+            <spring-mass-damper></spring-mass-damper>
+          </section>
+          <section data-timing="300">
+            <h2>Réponse en fréquence</h2>
+            <script src="https://unpkg.com/d3@7"></script>
+            <script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+            <div class="plot-scope">
+              <style>
+                .plot-scope {
+                    .axis path, .axis line {
+                        stroke: #ffffff;
+                        opacity: .4;
+                    }
+                    text {
+                        fill: #fff;
+                    }
+                }
+                
+              </style>
+              <div id="resonance-plot" style="margin: 0 auto;"></div>
+              <script>
+                functionPlot({
+                    target: '#resonance-plot',
+                    disableZoom: true,
+                    xAxis: { label: 'Fréquence w', domain: [1, 20], type: 'log' },
+                    yAxis: { label: 'Amplitude A', domain: [.01, 10], type: 'log' },
+                    grid: true,
+                    data: [{
+                        nSamples: 1000,
+                        // Exemple avec w0 = 10 et F0/m = 10
+                        fn: '10 / abs(100 - x^2)',
+                        color: '#e74c3c',
+                        graphType: 'polyline',
+                        attr: { "stroke-width": 3 },
+                    }]
+                });
+              </script>
+            </div>
+          </section>
+          <section data-background-color="#34415e" data-timing="300">
+            <h2>🙋 Des questions ?</h2>
+          </section>
+        </section>
+        <section data-timing="600">
+          <h1>Pourquoi ?</h1>
+          <video controls src="tacoma.mp4"></video>
+        </section>
+        <section data-timing="600">
+          <h1>En résumé</h1>
+          <ol>
+            <li>Oscillateur non-amorti, libre :
+              <p><span class="box">$ \lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t) $</span> ou <span class="box">$ X \sin(\omega_0 t + \phi) $</span></p>
+            </li>
+            <li>Oscillateur non-amorti, forçage de type $F_e(t) = F_0 \cos(\omega t)$ :
+              <ul>
+                <li>
+                  <p class="box">$$ x(t) = \underbrace{\lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t)}_{x_h(t)} + \underbrace{\frac{F_0/m}{\omega_0^2 - \omega^2} \cos(\omega t)}_{x_p(t)} $$</p>
+                  <li>Résonance quand $\omega \approx \omega_0$</li>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <script type="module">
+      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.esm.js"
+      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.esm.js"
+      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.esm.js"
+      
+      let deck = new Reveal({
+          plugins: [RevealMath.KaTeX, RevealNotes],
+          hash: true,
+          slideNumber: "c/t",
+          totalTime: 7200,
+      });
+      
+      deck.on('ready', event => {
+          const defaultTime = 120; // 2 minutes par défaut
+          let totalSeconds = 0;
+      
+          document.querySelectorAll('.slides > section').forEach(section => {
+              // On vérifie si c'est une section horizontale ou verticale
+              const verticalSlides = section.querySelectorAll('section');
+              
+              if (verticalSlides.length > 0) {
+                  verticalSlides.forEach(s => {
+                      totalSeconds += parseInt(s.getAttribute('data-timing')) || defaultTime;
+                  });
+              } else {
+                  totalSeconds += parseInt(section.getAttribute('data-timing')) || defaultTime;
+              }
+          });
+      
+          const minutes = Math.floor(totalSeconds / 60);
+          console.log(`⏱️ DURÉE TOTALE PRÉVUE : ${minutes} minutes (${totalSeconds}s)`);
+      });
+      
+      deck.initialize();
+    </script>
+  </body>
+</html>
