@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Violin Identification on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:1313/tags/violin-identification/</link>
+    <link>http://localhost:35291/tags/violin-identification/</link>
     <description>Recent content in Violin Identification on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.155.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 May 2025 22:56:31 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/violin-identification/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:35291/tags/violin-identification/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Identification de violons par apprentissage automatique à partir de descripteurs audio issus d&#39;enregistrements de plusieurs violonistes</title>
-      <link>http://localhost:1313/papers/identification-de-violons-cfa/</link>
+      <link>http://localhost:35291/papers/identification-de-violons-cfa/</link>
       <pubDate>Sat, 10 May 2025 22:56:31 +0200</pubDate>
-      <guid>http://localhost:1313/papers/identification-de-violons-cfa/</guid>
+      <guid>http://localhost:35291/papers/identification-de-violons-cfa/</guid>
       <description>Paper description for search engines (less than 155 characters)</description>
     </item>
   </channel>

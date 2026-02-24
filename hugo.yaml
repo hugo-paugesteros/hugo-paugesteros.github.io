@@ -1,3 +1,19 @@
+module:
+  mounts:
+    # 1. Standard content mount, but ignore all 'slides' folders
+    - source: content
+      target: content
+      excludeFiles: "**/slides/**"
+
+    # 2. Map all 'slides' folders from content into the static space
+    - source: content
+      target: static
+      includeFiles: "**/slides/**"
+
+    # 3. Keep the default static folder as well
+    - source: static
+      target: static
+
 baseURL: https://paugesteros.com/
 languageCode: en-us
 title: Hugo Pauget Ballesteros

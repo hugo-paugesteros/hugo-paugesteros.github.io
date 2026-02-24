@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Papers on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:1313/papers/</link>
+    <link>http://localhost:35291/papers/</link>
     <description>Recent content in Papers on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.155.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 May 2025 23:08:16 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/papers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:35291/papers/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Influence des paramètres de contrôle de la corde frottée sur certains descripteurs audio en conditions réelles de jeu</title>
-      <link>http://localhost:1313/papers/parametres-archet-cfa/</link>
+      <link>http://localhost:35291/papers/parametres-archet-cfa/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:1313/papers/parametres-archet-cfa/</guid>
+      <guid>http://localhost:35291/papers/parametres-archet-cfa/</guid>
       <description>Paper description for search engines (less than 155 characters)</description>
     </item>
     <item>
       <title>Identification de violons par apprentissage automatique à partir de descripteurs audio issus d&#39;enregistrements de plusieurs violonistes</title>
-      <link>http://localhost:1313/papers/identification-de-violons-cfa/</link>
+      <link>http://localhost:35291/papers/identification-de-violons-cfa/</link>
       <pubDate>Sat, 10 May 2025 22:56:31 +0200</pubDate>
-      <guid>http://localhost:1313/papers/identification-de-violons-cfa/</guid>
+      <guid>http://localhost:35291/papers/identification-de-violons-cfa/</guid>
       <description>Paper description for search engines (less than 155 characters)</description>
     </item>
     <item>
       <title>Read Your Voice</title>
-      <link>http://localhost:1313/papers/read-your-voice/</link>
+      <link>http://localhost:35291/papers/read-your-voice/</link>
       <pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/papers/read-your-voice/</guid>
+      <guid>http://localhost:35291/papers/read-your-voice/</guid>
       <description>Read Your Voice is a playful interactive multimedia system that allows the user to record a sound, encode it as an image, and then play it back using his smartphone, while controlling the speed and direction of playback.</description>
     </item>
   </channel>

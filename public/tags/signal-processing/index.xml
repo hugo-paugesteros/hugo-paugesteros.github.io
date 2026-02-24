@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Signal Processing on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:1313/tags/signal-processing/</link>
+    <link>http://localhost:35291/tags/signal-processing/</link>
     <description>Recent content in Signal Processing on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.155.3</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 May 2025 18:32:43 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/signal-processing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:35291/tags/signal-processing/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Traitement des Données Audiovisuelles</title>
-      <link>http://localhost:1313/courses/tav/</link>
+      <link>http://localhost:35291/courses/tav/</link>
       <pubDate>Fri, 09 May 2025 18:32:43 +0200</pubDate>
-      <guid>http://localhost:1313/courses/tav/</guid>
+      <guid>http://localhost:35291/courses/tav/</guid>
       <description>Description of the course (less than 155 characters)</description>
     </item>
     <item>
       <title>Read Your Voice</title>
-      <link>http://localhost:1313/papers/read-your-voice/</link>
+      <link>http://localhost:35291/papers/read-your-voice/</link>
       <pubDate>Mon, 10 Oct 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/papers/read-your-voice/</guid>
+      <guid>http://localhost:35291/papers/read-your-voice/</guid>
       <description>Read Your Voice is a playful interactive multimedia system that allows the user to record a sound, encode it as an image, and then play it back using his smartphone, while controlling the speed and direction of playback.</description>
     </item>
   </channel>

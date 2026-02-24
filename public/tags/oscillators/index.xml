@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Oscillators on Hugo Pauget Ballesteros</title>
+    <link>http://localhost:35291/tags/oscillators/</link>
+    <description>Recent content in Oscillators on Hugo Pauget Ballesteros</description>
+    <generator>Hugo -- 0.155.3</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Feb 2026 09:29:40 +0100</lastBuildDate>
+    <atom:link href="http://localhost:35291/tags/oscillators/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OM</title>
+      <link>http://localhost:35291/courses/om/</link>
+      <pubDate>Tue, 24 Feb 2026 09:29:40 +0100</pubDate>
+      <guid>http://localhost:35291/courses/om/</guid>
+      <description>Description of the course (less than 155 characters)</description>
+    </item>
+  </channel>
+</rss>

@@ -2,66 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>http://localhost:35291/tags/</link>
     <description>Recent content in Tags on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.147.3</generator>
+    <generator>Hugo -- 0.155.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 May 2025 23:08:16 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Feb 2026 09:29:40 +0100</lastBuildDate>
+    <atom:link href="http://localhost:35291/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beams</title>
+      <link>http://localhost:35291/tags/beams/</link>
+      <pubDate>Tue, 24 Feb 2026 09:29:40 +0100</pubDate>
+      <guid>http://localhost:35291/tags/beams/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Oscillators</title>
+      <link>http://localhost:35291/tags/oscillators/</link>
+      <pubDate>Tue, 24 Feb 2026 09:29:40 +0100</pubDate>
+      <guid>http://localhost:35291/tags/oscillators/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wave Propgation</title>
+      <link>http://localhost:35291/tags/wave-propgation/</link>
+      <pubDate>Tue, 24 Feb 2026 09:29:40 +0100</pubDate>
+      <guid>http://localhost:35291/tags/wave-propgation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Keyword 1</title>
-      <link>http://localhost:1313/tags/keyword-1/</link>
+      <link>http://localhost:35291/tags/keyword-1/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:1313/tags/keyword-1/</guid>
+      <guid>http://localhost:35291/tags/keyword-1/</guid>
       <description></description>
     </item>
     <item>
       <title>Keyword 2</title>
-      <link>http://localhost:1313/tags/keyword-2/</link>
+      <link>http://localhost:35291/tags/keyword-2/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:1313/tags/keyword-2/</guid>
+      <guid>http://localhost:35291/tags/keyword-2/</guid>
       <description></description>
     </item>
     <item>
       <title>Keyword 3</title>
-      <link>http://localhost:1313/tags/keyword-3/</link>
+      <link>http://localhost:35291/tags/keyword-3/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:1313/tags/keyword-3/</guid>
+      <guid>http://localhost:35291/tags/keyword-3/</guid>
       <description></description>
     </item>
     <item>
       <title>Keyword 4</title>
-      <link>http://localhost:1313/tags/keyword-4/</link>
+      <link>http://localhost:35291/tags/keyword-4/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:1313/tags/keyword-4/</guid>
+      <guid>http://localhost:35291/tags/keyword-4/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
+      <link>http://localhost:35291/tags/machine-learning/</link>
       <pubDate>Sat, 10 May 2025 22:56:31 +0200</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <guid>http://localhost:35291/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Violin Identification</title>
-      <link>http://localhost:1313/tags/violin-identification/</link>
+      <link>http://localhost:35291/tags/violin-identification/</link>
       <pubDate>Sat, 10 May 2025 22:56:31 +0200</pubDate>
-      <guid>http://localhost:1313/tags/violin-identification/</guid>
+      <guid>http://localhost:35291/tags/violin-identification/</guid>
       <description></description>
     </item>
     <item>
       <title>MIR</title>
-      <link>http://localhost:1313/tags/mir/</link>
+      <link>http://localhost:35291/tags/mir/</link>
       <pubDate>Fri, 09 May 2025 18:32:43 +0200</pubDate>
-      <guid>http://localhost:1313/tags/mir/</guid>
+      <guid>http://localhost:35291/tags/mir/</guid>
       <description></description>
     </item>
     <item>
       <title>Signal Processing</title>
-      <link>http://localhost:1313/tags/signal-processing/</link>
+      <link>http://localhost:35291/tags/signal-processing/</link>
       <pubDate>Fri, 09 May 2025 18:32:43 +0200</pubDate>
-      <guid>http://localhost:1313/tags/signal-processing/</guid>
+      <guid>http://localhost:35291/tags/signal-processing/</guid>
       <description></description>
     </item>
   </channel>
