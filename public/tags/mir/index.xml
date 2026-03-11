@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>MIR on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:35291/tags/mir/</link>
+    <link>http://localhost:1313/tags/mir/</link>
     <description>Recent content in MIR on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.155.3</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 09 May 2025 18:32:43 +0200</lastBuildDate>
-    <atom:link href="http://localhost:35291/tags/mir/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/mir/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Traitement des Données Audiovisuelles</title>
-      <link>http://localhost:35291/courses/tav/</link>
+      <link>http://localhost:1313/courses/tav/</link>
       <pubDate>Fri, 09 May 2025 18:32:43 +0200</pubDate>
-      <guid>http://localhost:35291/courses/tav/</guid>
+      <guid>http://localhost:1313/courses/tav/</guid>
       <description>Description of the course (less than 155 characters)</description>
     </item>
   </channel>

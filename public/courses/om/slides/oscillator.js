@@ -82,6 +82,7 @@ class SpringMassDamper extends HTMLElement {
         this.v = 0;
         this.t = 0;
         this.history = new Array(200).fill(this.x);
+        this.historyForce = new Array(200).fill(this.x);
         this.animate = this.animate.bind(this);
 
         this.isDragging = false;
@@ -125,7 +126,8 @@ class SpringMassDamper extends HTMLElement {
 
         // Restored the force vector arrow
         this.forceArrow = this.canvas.path().fill('none').stroke({ color: '#ef4444', width: 3, linecap: 'round', linejoin: 'round' });
-        this.plotLine = this.canvas.polyline().fill('none').stroke({ color: '#10b981', width: 2, linecap: 'round', linejoin: 'round' });
+        this.plotLine = this.canvas.polyline().fill('none').stroke({ color: '#3b82f6', width: 2, linecap: 'round', linejoin: 'round' });
+        this.plotLineForce = this.canvas.polyline().fill('none').stroke({ color: '#ef4444', width: 2, linecap: 'round', linejoin: 'round' });
 
         this.mass.node.addEventListener('pointerdown', (e) => {
             this.isDragging = true;
@@ -182,6 +184,9 @@ class SpringMassDamper extends HTMLElement {
         this.history.push(this.x);
         this.history.shift();
 
+        this.historyForce.push(F0 * Math.cos(wf * this.t));
+        this.historyForce.shift();
+
         this.updateGraphics(F0, wf);
         this.reqId = requestAnimationFrame(this.animate);
     }
@@ -236,6 +241,12 @@ class SpringMassDamper extends HTMLElement {
             originY + (val * visualScale) // Scale the plot to match the mass
         ]);
         this.plotLine.plot(points);
+
+        const pointsForce = this.historyForce.map((val, index) => [
+            plotStartX + index * stepX,
+            originY + (val * visualScale) // Scale the plot to match the mass
+        ]);
+        this.plotLineForce.plot(pointsForce);
     }
 }
 

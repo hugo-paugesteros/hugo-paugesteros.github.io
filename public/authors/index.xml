@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Authors on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:35291/authors/</link>
+    <link>http://localhost:1313/authors/</link>
     <description>Recent content in Authors on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.155.3</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 May 2025 23:08:16 +0200</lastBuildDate>
-    <atom:link href="http://localhost:35291/authors/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/authors/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Claudia Fritz</title>
-      <link>http://localhost:35291/authors/claudia-fritz/</link>
+      <link>http://localhost:1313/authors/claudia-fritz/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:35291/authors/claudia-fritz/</guid>
+      <guid>http://localhost:1313/authors/claudia-fritz/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo Pauget Ballesteros</title>
-      <link>http://localhost:35291/authors/hugo-pauget-ballesteros/</link>
+      <link>http://localhost:1313/authors/hugo-pauget-ballesteros/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:35291/authors/hugo-pauget-ballesteros/</guid>
+      <guid>http://localhost:1313/authors/hugo-pauget-ballesteros/</guid>
       <description></description>
     </item>
     <item>
       <title>Philippe Lalitte</title>
-      <link>http://localhost:35291/authors/philippe-lalitte/</link>
+      <link>http://localhost:1313/authors/philippe-lalitte/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:35291/authors/philippe-lalitte/</guid>
+      <guid>http://localhost:1313/authors/philippe-lalitte/</guid>
       <description></description>
     </item>
   </channel>

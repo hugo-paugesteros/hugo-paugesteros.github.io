@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/theme/black.css">
+    <style>
+      :root {
+          --r-main-font: "Atkinson Hyperlegible Next";
+          --r-heading-font: "Atkinson Hyperlegible Next";
+          --r-main-font-size: 20px;
+          --r-heading-text-transform: none;
+      }
+      .box {
+          border: 2px solid #3498db;
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+          background-color: rgba(52, 152, 219, 0.1);
+      }
+      
+    </style>
+    <script type="module" src="oscillator.js"> </script>
+  </head>
+  <body> 
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Cours 2</h1>
+          <p>Hugo Pauget Ballesteros</p>
+          <p>hugo.pauget@dalembert.upmc.fr</p>
+          <p><a href="https://paugesteros.com/courses/om/">https://paugesteros.com/courses/om/</a></p>
+        </section>
+        <section>
+          <h1>Previously...</h1>
+          <ol>
+            <li>PFD $\iff$ Équations de Lagrange :
+              <p class="box">$$ \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{x}} \right) - \frac{\partial L}{\partial x} = 0 $$</p>
+            </li>
+            <li>Oscillateur non-amorti, libre :
+              <p><span class="box">$ \lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t) $</span> ou <span class="box">$ X \sin(\omega_0 t + \phi) $</span></p>
+            </li>
+            <li>Oscillateur non-amorti, forçage de type $F_e(t) = F_0 \cos(\omega t)$ :
+              <ul>
+                <li>
+                  <p class="box">$$ x(t) = \underbrace{\lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t)}_{x_h(t)} + \underbrace{\frac{F_0/m}{\omega_0^2 - \omega^2} \cos(\omega t)}_{x_p(t)} $$</p>
+                  <li>Résonance quand $\omega \approx \omega_0$</li>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h1>Oscillateur libre amorti</h1>
+          <section data-timing="120">
+            <h2>Schéma</h2>
+            <figure>
+              <figure class="free-oscillator">
+                <style>
+                  figure svg {
+                      path {
+                          stroke: white !important;
+                      }
+                      text {
+                          fill: white !important;
+                      }
+                  }
+                  .free-oscillator svg {
+                      g[inkscape\:label="external"] {
+                          display: none;
+                      }
+                  }
+                </style><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="421.65353"
+   height="230.31496"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="oscillator.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4834111"
+     inkscape:cx="182.34999"
+     inkscape:cy="175.94583"
+     inkscape:current-layer="g3"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-global="true"
+     units="mm"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="810"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-text-baseline="true"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       id="grid3"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="1.8897638"
+       spacingy="0.37795276"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-822.04797)">
+    <path
+       style="fill:#000000;stroke-width:0.76809;paint-order:fill markers stroke"
+       d="M 341.02966,981.50208 V 875.20288"
+       id="path3" />
+    <g
+       id="g2"
+       inkscape:label="cart">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3015"
+         width="230.31496"
+         height="106.29921"
+         x="110.71471"
+         y="875.20288" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z"
+         transform="translate(-119.01746,797.2501)" />
+      <path
+         transform="translate(43.306358,798.26026)"
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020-1"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="209.25821"
+         y="938.0545"
+         id="text3921"><tspan
+           sodipodi:role="line"
+           id="tspan3923"
+           x="209.25821"
+           y="938.0545"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">m</tspan></text>
+    </g>
+    <g
+       id="g1"
+       inkscape:label="spring">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.69538653px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 39.907238,963.60694 13.71029,0.22321"
+         id="path3826"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 8.85827,35.43307"
+         id="path3828"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 -8.85827,35.43307"
+         id="path3848"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 75.281618,981.50205 8.858273,-35.43307 8.85826,35.43307"
+         id="path3850"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 97.427281,963.78552 -4.42913,17.71653"
+         id="path3852"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 57.565078,981.50205 -3.94755,-17.6719"
+         id="path3854"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 110.7147,963.54085 -13.287419,0.24467"
+         id="path3860"
+         inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:oblique;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.207367"
+         y="1012.0769"
+         id="text3929"><tspan
+           sodipodi:role="line"
+           id="tspan3931"
+           x="66.207367"
+           y="1012.0769"
+           style="font-size:36px;line-height:1.25;font-family:sans-serif">k</tspan></text>
+    </g>
+    <g
+       id="g3992"
+       inkscape:label="damper">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3862"
+         d="m 39.848548,910.6359 35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3864"
+         d="m 75.281608,892.91937 c 0,46.81735 0,23.62205 0,35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3866"
+         d="m 57.565078,892.91937 35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3868"
+         d="m 92.998151,892.91937 0,35.43307 -35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3870"
+         d="m 92.998151,910.6359 17.716539,0"
+         style="fill:none;stroke:#000000;stroke-width:1.0015748;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.423347"
+         y="884.0611"
+         id="text3925"><tspan
+           sodipodi:role="line"
+           id="tspan3927"
+           x="66.423347"
+           y="884.0611"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">c</tspan></text>
+    </g>
+    <path
+       style="fill:#999999;stroke:#000000;stroke-width:1.0629921;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 22.1453,875.1876 0,141.75 0,17.7187 380.90625,0 0,-17.7187 -363.187502,0 0,-141.75 -17.718748,0 z"
+       id="rect3916"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3"
+       inkscape:label="external">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="360.97696"
+         y="900.6864"
+         id="text3921-6"><tspan
+           sodipodi:role="line"
+           id="tspan3923-7"
+           x="360.97696"
+           y="900.6864"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">f(t)</tspan></text>
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:1.0015748;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;marker-end:url(#Triangle);stroke-miterlimit:4"
+         d="m 341.02966,925.18716 h 40.57578"
+         id="path4"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
+
+                <figcaption>Un oscillateur amorti.</figcaption>
+              </figure>
+            </figure>
+          </section>
+          <section data-timing="120">
+            <h2>Rappels : Amortissement visqueux linéaire</h2>
+            <p>Sous certaines hypothèses, la force de frottement est proportionnelle à la vitesse :</p>
+            <p>$\mathbf{F_c} = -c \mathbf{v} $</p>
+            <p>Dimension de $c$ ?</p>
+          </section>
+          <section data-timing="120">
+            <h2>Mise en équation</h2>
+            <p>Le PFD appliqué à la masse donne :</p>
+            <p>$ m \mathbf{a} = - \mathbf{F_k} - \mathbf{F_c} $</p>
+            <p>$ m \ddot{x} = -F_k - F_c = -kx - c \dot{x} $</p>
+            <p>C'est-à-dire :</p>
+            <p>$ \ddot{x} + \frac{c}{m} \dot{x} + \frac{k}{m} x = 0 $</p>
+            <p>Ou encore :</p>
+            <p class="box">$\ddot{x} + 2 \xi \omega_0 \dot{x} + \omega_0^2x = 0 $</p>
+            <p>où $ \xi = \frac{c}{2 m \omega_0} = \frac{c}{2 \sqrt{k m}} $ est appelée <em>coefficient d'ammortissement</em>.</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Résolution</h2>
+            <div class="instructions">
+              <ol>
+                <li>Calculer le discriminant de l'équation caractéristique</li>
+                <li>Donner, en fonction des valeurs de $\xi$, les racines de l'équation caractéristique</li>
+                <li>Résoudre l'équation différentielle</li>
+              </ol>
+            </div>
+          </section>
+          <section data-timing="180">
+            <h2>Résolution</h2>
+            <p>Nous voulons résoudre l'EDOL d'ordre 2 :</p>
+            <p>$ \ddot{x} + 2 \xi \omega_0 \dot{x} + \omega_0^2 x = 0 $</p>
+            <p>Elle a pour équation caractéristique :</p>
+            <p>$ r^2 + 2 \xi \omega_0 r + \omega_0^2 = 0 $</p>
+            <p>De discriminant :</p>
+            <p>$ \Delta = (2 \xi \omega_0)^2 - 4 \omega_0^2 = 4 \omega_0^2 (\xi^2 - 1) $</p>
+            <p>Nous avons alors trois possibilités...</p>
+          </section>
+          <section data-timing="180">
+            <h2>Résolution, 2</h2>
+            <ol>
+              <li>
+                <p>Amortissement élevé : $ \xi \gt 1 \Leftrightarrow \Delta \gt 0 $
+                  <p>Les soutions sont de la forme : $$ x(t) = A e^{(-\xi + \sqrt{\xi^2 - 1}) \omega_0 t} + B e^{(-\xi - \sqrt{\xi^2 - 1}) \omega_0 t} $$</p>
+                </p>
+              </li>
+              <li>
+                <p>Amortissement critique : $ \xi = 1 \Leftrightarrow \Delta = 0 $
+                  <p>Les soutions sont de la forme : $ x(t) = (A t + B) e^{-\omega_0 t} $</p>
+                </p>
+              </li>
+              <li>
+                <p>Amortissement faible : $ \xi \lt 1 \Leftrightarrow \Delta \lt 0 $
+                  <p>
+                    $$
+                    \begin{aligned}
+                    x(t)    &= e^{-\xi \omega_0 t} (A e^{i \omega_1 t} + B e^{- i \omega_1 t} ) \\
+                            &= X e^{-\xi \omega_0 t} \sin(\omega_1 t + \phi),
+                    \end{aligned}
+                    $$
+                    où $\omega_1$ est appelée <em>pseudo-pulsation</em> et est définie par $ \omega_1 \overset{\text{def}}{=} \omega_0 \sqrt{1 - \xi^2} $.
+                    
+                  </p>
+                </p>
+              </li>
+            </ol>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Application</h2>
+            <div class="instructions">
+              <p>Donnez les valeurs des constantes en fonction de $x_0$ et $v_0$, position et vitesse initiale du système.</p>
+            </div>
+          </section>
+          <section data-timing="300">
+            <h2>Simulation</h2>
+            <spring-mass-damper></spring-mass-damper>
+          </section>
+          <section data-timing="300">
+            <h2>Courbes</h2>
+            <div class="container" style="display: flex; align-items: center; gap: 20px; flex-direction: column; position: relative">
+              <div class="curve-controls" style="font-size: 0.75em; text-align: left; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                <div style="display: flex">
+                  <div>
+                    <label for="x0">Position initiale ($x_0$): </label><span id="valX0">5</span> m
+                    <input id="x0" type="range" min="-10" max="10" value="5" step="0.1" style="width: 100%;">
+                  </div>
+                  <div>
+                    <label for="v0">Vitesse initiale ($v_0$): </label><span id="valV0">2</span> m/s
+                    <input id="v0" type="range" min="-10" max="10" value="2" step="0.1" style="width: 100%;">
+                  </div>
+                </div>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #555;">
+                <div style="display: flex; justify-content: space-around;">
+                  <p style="margin: 0;">$\omega_0 = 2.0$ rad/s</p>
+                  <p style="margin: 0; color: #ff6384;">$\xi_{high} = 1.1$</p>
+                  <p style="margin: 0; color: #4bc0c0;">$\xi_{low} = 0.1$</p>
+                </div>
+              </div>
+              <div class="chart-container" style="position: relative; width: 100% !important;height: 100% !important;">
+                <canvas id="oscillatorChart"></canvas>
+              </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+              const ctx = document.getElementById('oscillatorChart').getContext('2d');
+              const w0 = 2.0;
+              const tMax = 10;
+              const steps = 250;
+              
+              const chart = new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                  labels: Array.from({length: steps}, (_, i) => (i * tMax / steps).toFixed(2)),
+                  datasets: [
+                      { label: 'Amortissement élevé (ξ > 1)', borderColor: '#ff6384', data: [], borderDash: [5, 5], pointRadius: 0, fill: false },
+                      { label: 'Critique (ξ = 1)', borderColor: '#36a2eb', data: [], borderWidth: 3, pointRadius: 0, fill: false },
+                      { label: 'Amortissement faible (ξ < 1)', borderColor: '#4bc0c0', data: [], pointRadius: 0, fill: false }
+                  ]
+                  },
+                  options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  resizeDelay: 200,
+                  scales: {
+                      y: { min: -15, max: 15, grid: { color: 'rgba(255,255,255,0.1)' } },
+                      x: { grid: { display: false } }
+                  },
+                  animation: false
+                  }
+              });
+              
+              function update() {
+                  const x0 = parseFloat(document.getElementById('x0').value);
+                  const v0 = parseFloat(document.getElementById('v0').value);
+                  document.getElementById('valX0').innerText = x0;
+                  document.getElementById('valV0').innerText = v0;
+              
+                  const dHigh = [], dCrit = [], dLow = [];
+                  for (let i = 0; i < steps; i++) {
+                  const t = i * (tMax / steps);
+                  
+                  // Suraverti
+                  const xiH = 1.1;
+                  const w1H = w0 * Math.sqrt(xiH * xiH - 1);
+                  const Ah = (-v0 + x0 * (w1H - xiH * w0)) / (2 * w1H);
+                  const Bh = (v0 + x0 * (w1H + xiH * w0)) / (2 * w1H);
+                  dHigh.push(Math.exp(-w0 * t) * (Ah * Math.exp(w1H * t) + Bh * Math.exp(-w1H * t)));
+              
+                  // Critique
+                  dCrit.push(Math.exp(-w0 * t) * (x0 + (v0 + w0 * x0) * t));
+              
+                  // Sous-amorti
+                  const xiL = 0.1;
+                  const w1L = w0 * Math.sqrt(1 - xiL * xiL);
+                  const Bl = (v0 + xiL * w0 * x0) / w1L;
+                  dLow.push(Math.exp(-xiL * w0 * t) * (x0 * Math.cos(w1L * t) + Bl * Math.sin(w1L * t)));
+                  }
+                  chart.data.datasets[0].data = dHigh;
+                  chart.data.datasets[1].data = dCrit;
+                  chart.data.datasets[2].data = dLow;
+                  chart.update();
+              }
+              
+              document.getElementById('x0').oninput = update;
+              document.getElementById('v0').oninput = update;
+              update();
+              
+              document.addEventListener('slidechanged', event => {
+              // Reveal passe les détails du changement dans event.detail
+                  chart.resize();
+              
+              });
+              
+            </script>
+          </section>
+          <section data-background-color="#34415e" data-timing="300">
+            <h2>🙋 Des questions ?</h2>
+          </section>
+        </section>
+        <section>
+          <h1>Oscillateur forcé amorti</h1>
+          <section data-timing="120">
+            <h2>Schéma</h2>
+            <figure>
+              <figure class="forced-oscillator"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="421.65353"
+   height="230.31496"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="oscillator.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs3">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4834111"
+     inkscape:cx="182.34999"
+     inkscape:cy="175.94583"
+     inkscape:current-layer="g3"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-global="true"
+     units="mm"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="810"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-text-baseline="true"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       id="grid3"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="1.8897638"
+       spacingy="0.37795276"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-822.04797)">
+    <path
+       style="fill:#000000;stroke-width:0.76809;paint-order:fill markers stroke"
+       d="M 341.02966,981.50208 V 875.20288"
+       id="path3" />
+    <g
+       id="g2"
+       inkscape:label="cart">
+      <rect
+         style="fill:#e6e6e6;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect3015"
+         width="230.31496"
+         height="106.29921"
+         x="110.71471"
+         y="875.20288" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z"
+         transform="translate(-119.01746,797.2501)" />
+      <path
+         transform="translate(43.306358,798.26026)"
+         sodipodi:type="arc"
+         style="fill:#e6e6e6;stroke:#000000;stroke-width:1.41732287;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="path3020-1"
+         sodipodi:cx="265.74802"
+         sodipodi:cy="201.96848"
+         sodipodi:rx="17.716536"
+         sodipodi:ry="17.716536"
+         d="m 283.46455,201.96848 a 17.716536,17.716536 0 0 1 -17.71653,17.71653 17.716536,17.716536 0 0 1 -17.71654,-17.71653 17.716536,17.716536 0 0 1 17.71654,-17.71654 17.716536,17.716536 0 0 1 17.71653,17.71654 z" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="209.25821"
+         y="938.0545"
+         id="text3921"><tspan
+           sodipodi:role="line"
+           id="tspan3923"
+           x="209.25821"
+           y="938.0545"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">m</tspan></text>
+    </g>
+    <g
+       id="g1"
+       inkscape:label="spring">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.69538653px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 39.907238,963.60694 13.71029,0.22321"
+         id="path3826"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 8.85827,35.43307"
+         id="path3828"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 66.423348,946.06898 -8.85827,35.43307"
+         id="path3848"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 75.281618,981.50205 8.858273,-35.43307 8.85826,35.43307"
+         id="path3850"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 97.427281,963.78552 -4.42913,17.71653"
+         id="path3852"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 57.565078,981.50205 -3.94755,-17.6719"
+         id="path3854"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 110.7147,963.54085 -13.287419,0.24467"
+         id="path3860"
+         inkscape:connector-curvature="0" />
+      <text
+         xml:space="preserve"
+         style="font-style:oblique;font-weight:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.207367"
+         y="1012.0769"
+         id="text3929"><tspan
+           sodipodi:role="line"
+           id="tspan3931"
+           x="66.207367"
+           y="1012.0769"
+           style="font-size:36px;line-height:1.25;font-family:sans-serif">k</tspan></text>
+    </g>
+    <g
+       id="g3992"
+       inkscape:label="damper">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3862"
+         d="m 39.848548,910.6359 35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3864"
+         d="m 75.281608,892.91937 c 0,46.81735 0,23.62205 0,35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3866"
+         d="m 57.565078,892.91937 35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3868"
+         d="m 92.998151,892.91937 0,35.43307 -35.433073,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3870"
+         d="m 92.998151,910.6359 17.716539,0"
+         style="fill:none;stroke:#000000;stroke-width:1.0015748;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="66.423347"
+         y="884.0611"
+         id="text3925"><tspan
+           sodipodi:role="line"
+           id="tspan3927"
+           x="66.423347"
+           y="884.0611"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">c</tspan></text>
+    </g>
+    <path
+       style="fill:#999999;stroke:#000000;stroke-width:1.0629921;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 22.1453,875.1876 0,141.75 0,17.7187 380.90625,0 0,-17.7187 -363.187502,0 0,-141.75 -17.718748,0 z"
+       id="rect3916"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g3"
+       inkscape:label="external">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         x="360.97696"
+         y="900.6864"
+         id="text3921-6"><tspan
+           sodipodi:role="line"
+           id="tspan3923-7"
+           x="360.97696"
+           y="900.6864"
+           style="font-style:oblique;font-size:36px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'Sans Oblique'">f(t)</tspan></text>
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:1.0015748;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke;marker-end:url(#Triangle);stroke-miterlimit:4"
+         d="m 341.02966,925.18716 h 40.57578"
+         id="path4"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
+
+                <figcaption>Un oscillateur forcé amorti.</figcaption>
+              </figure>
+            </figure>
+          </section>
+          <section data-timing="120">
+            <h2>Mise en équation</h2>
+            <p>Le PFD appliqué à la masse :</p>
+            <p>$$ m \mathbf{a} = - \mathbf{F_k} - \mathbf{F_c} + \mathbf{F_e} $$</p>
+            <p>$$ m \ddot{x} = -F_k - F_c + F_e = -kx - c \dot{x} + F_e $$</p>
+            <p>Ce qui nous donne l'équation différentielle :</p>
+            <div class="box">
+              <p>$$ \ddot{x} + 2 \xi \omega_0 \dot{x} + \omega_0^2x = \frac{F_e(t)}{m} $$</p>
+            </div>
+            <p>On étudie une force sinusoïdale : $F_e(t) = F_0 \cos(\omega t)$.</p>
+          </section>
+          <section data-timing="180">
+            <h2>Résolution</h2>
+            <p>On cherche la solution sous la forme $x(t) = x_h(t) + x_p(t)$.</p>
+            <ol>
+              <li>Solution homogène ($x_h$) : déjà vue (oscillations libres).</li>
+              <li>Solution particulière ($x_p$) : liée à la force d'excitation.</li>
+            </ol>
+            <p>Pour $x_p(t)$, cette fois il faudrait tester une solution de la forme :</p>
+            <p>$$ x_p(t) = A \cos(\omega t) + B \sin(\omega t) $$</p>
+            <p class="fragment">... et c'est looooooooong !</p>
+          </section>
+          <section>
+            <h2>Résolution : l'astuce</h2>
+            <p>On va s'intéresser à l'équation différentielle complexe suivante :</p>
+            <p>$$ \ddot{X} + 2 \xi \omega_0 \dot{X} + \omega_0^2 X = \frac{F_0}{m} e^{i \omega t} $$</p>
+            <p>Remarquons que si $\underline{X_p(t)}$ est solution de cette équation, alors $x_p(t) = \Re(\underline{X_p(t)})$ est solution de $ \ddot{x} + 2 \xi \omega_0 \dot{x} + \omega_0^2x = \frac{F_0}{m} \cos(\omega t) $</p>
+            <p>On va tester une solution du type :</p>
+            <p>$$ \underline{X_p(t)} = \underline{A} e^{i \omega t} $$</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Résolution</h2>
+            <div class="instructions">
+              <p>À quelle(s) condition(s) $X_p(t)$ pourrait être solution de l'équation différentielle ?</p>
+            </div>
+          </section>
+          <section data-timing="120">
+            <h2>Calcul de $\underline{A}$</h2>
+            <p>En dérivant deux fois :</p>
+            <p>
+              $$ 
+              \begin{cases}
+                  \dot{X}_p(t) = \underline{A} i\omega e^{i \omega t} \\
+                  \ddot{X}_p(t) = -\underline{A} \omega^2 e^{i \omega t} 
+              \end{cases}
+              $$
+              
+            </p>
+            <p>En injectant dans l'équation différentielle :</p>
+            <p>
+              $$
+              \begin{aligned}
+                  (-\omega^2 + i 2 \xi \omega_0 \omega + \omega_0^2) \underline{A} e^{i \omega t} &= \frac{F_0}{m} e^{i \omega t} \\ \\
+                  (-\omega^2 + i 2 \xi \omega_0 \omega + \omega_0^2) \underline{A} &= \frac{F_0}{m} \\ \\
+                  \underline{A} &= \frac{F_0}{m} \frac{1}{(-\omega^2 + i 2 \xi \omega_0 \omega + \omega_0^2)}
+              \end{aligned}
+              $$
+              
+            </p>
+          </section>
+          <section>
+            <h2>Solution particulière complexe</h2>
+            <p>Si on note $\underline{A} = A e^{i \phi}$, alors :</p>
+            <p class="box">$$ A = \frac{F_0}{m} \frac{1}{\sqrt{(2 \xi \omega_0 \omega)^2 + (\omega_0^2 - \omega^2)^2}} $$</p>
+            <p class="box">$$ \phi = - \arctan \frac{2 \xi \omega_0 \omega}{\omega_0^2 - \omega^2} $$</p>
+          </section>
+          <section>
+            <h2>Solution particulière complexe</h2>
+            <p>Au final, une solution particulière de l'équation différentielle complexe :</p>
+            <p>$$ \ddot{X} + 2 \xi \omega_0 \dot{X} + \omega_0^2 X = \frac{F_0}{m} e^{i \omega t} $$</p>
+            <p>est :</p>
+            <p class="box">$$ \underline{X_p}(t) = \underline{A} e^{i \omega t} = A e^{i \omega t + \phi} $$</p>
+          </section>
+          <section>
+            <h2>Solution particulière réelle</h2>
+            <p>Enfin, une solution particulière de l'équation différentielle réelle :</p>
+            <p>$$ \ddot{x} + 2 \xi \omega_0 \dot{x} + \omega_0^2 x = \frac{F_0}{m} \cos(\omega t) $$</p>
+            <p>est :</p>
+            <p class="box">$$ x_p (t) = \Re(\underline{X_p}(t)) = A \cos (\omega t + \phi) $$</p>
+          </section>
+          <section data-timing="120">
+            <h2>Solution complète</h2>
+            <p>La solution complète s'écrit :</p>
+            <p class="box">
+              $$ 
+                  x(t) = 
+                  \underbrace{
+                      \begin{cases}
+                          A e^{(-\xi + \sqrt{\xi^2 - 1}) \omega_0 t} + B e^{(-\xi - \sqrt{\xi^2 - 1}) \omega_0 t} \\
+                          (A t + B) e^{-\omega_0 t} \\
+                          X e^{-\xi \omega_0 t} \sin(\omega_1 t + \phi) \\
+                      \end{cases}
+                  }_{x_h(t)} 
+                  + 
+                  \underbrace{
+                      \frac{F_0/m}{\sqrt{(2 \xi \omega_0 \omega)^2 + (\omega_0^2 - \omega^2)^2}} \cos(\omega t + \phi)
+                  }_{x_p(t)}
+              $$
+              
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Simulation</h2>
+            <spring-mass-damper></spring-mass-damper>
+          </section>
+          <section data-timing="300">
+            <h2>Réponse en fréquence</h2>
+            <script src="https://unpkg.com/d3@7"></script>
+            <script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+            <div class="controls" style="flex: 0 0 250px; font-size: 0.5em; text-align: left; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;"></div>
+            <label for="xi">Amortissement ($\xi$): <span id="valXi">0.1</span></label>
+            <input id="xi" type="range" min="0.01" max="1.0" value="0.1" step="0.01" style="width: 100%;">
+            <div class="charts-container" style="flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 100px; height: 50vh">
+              <div class="chart-wrapper" style="flex: 1; position: relative;">
+                <canvas id="ampChart"></canvas>
+              </div>
+              <div class="chart-wrapper" style="flex: 1; position: relative;">
+                <canvas id="phaseChart"></canvas>
+              </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+              (function() {
+              const w0 = 5;
+              const F0_m = 10;
+              
+              // Génération de l'axe des fréquences (échelle log entre 1 et 100)
+              const w_min = 1;
+              const w_max = 100;
+              const steps = 300;
+              const omegas = [];
+              for(let i = 0; i <= steps; i++) {
+                  omegas.push(Math.pow(10, Math.log10(w_min) + i * (Math.log10(w_max) - Math.log10(w_min)) / steps));
+              }
+              
+              // Configuration commune pour l'axe X
+              const xScaleConfig = {
+                  type: 'logarithmic',
+                  min: 1,
+                  max: 100,
+                  title: { display: true, text: 'Fréquence ω (rad/s)' },
+                  grid: { color: 'rgba(255,255,255,0.1)' }
+              };
+              
+              // Graphique Amplitude
+              const ctxAmp = document.getElementById('ampChart').getContext('2d');
+              const ampChart = new Chart(ctxAmp, {
+                  type: 'line',
+                  data: { datasets: [{ label: 'Amplitude A', borderColor: '#e74c3c', data: [], pointRadius: 0, fill: false }] },
+                  options: {
+                  responsive: true, maintainAspectRatio: false, animation: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                      x: { ...xScaleConfig, title: { display: false } }, // Masque le titre X en haut
+                      y: { type: 'logarithmic', title: { display: true, text: 'Amplitude' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                  }
+                  }
+              });
+              
+              // Graphique Phase
+              const ctxPhase = document.getElementById('phaseChart').getContext('2d');
+              const phaseChart = new Chart(ctxPhase, {
+                  type: 'line',
+                  data: { datasets: [{ label: 'Phase φ (rad)', borderColor: '#3498db', data: [], pointRadius: 0, fill: false }] },
+                  options: {
+                  responsive: true, maintainAspectRatio: false, animation: false,
+                  plugins: { legend: { display: false } },
+                  scales: {
+                      x: xScaleConfig,
+                      y: { 
+                      min: -Math.PI, max: 0, 
+                      title: { display: true, text: 'Phase (rad)' },
+                      ticks: {
+                          stepSize: Math.PI / 4,
+                          callback: function(value) {
+                          if (value === 0) return '0';
+                          if (Math.abs(value + Math.PI/2) < 0.1) return '-π/2';
+                          if (Math.abs(value + Math.PI) < 0.1) return '-π';
+                          return value.toFixed(2);
+                          }
+                      },
+                      grid: { color: 'rgba(255,255,255,0.1)' }
+                      }
+                  }
+                  }
+              });
+              
+              function update() {
+                  const xi = parseFloat(document.getElementById('xi').value);
+                  document.getElementById('valXi').innerText = xi.toFixed(2);
+              
+                  const dataAmp = [];
+                  const dataPhase = [];
+              
+                  omegas.forEach(w => {
+                  // Calcul Amplitude
+                  const denominatorSq = Math.pow(2 * xi * w0 * w, 2) + Math.pow(w0*w0 - w*w, 2);
+                  const A = F0_m / Math.sqrt(denominatorSq);
+                  dataAmp.push({ x: w, y: A });
+              
+                  // Calcul Phase propre (évite la discontinuité de atan)
+                  // La partie imaginaire du dénominateur est 2*xi*w0*w, la partie réelle w0^2 - w^2
+                  const phi = -Math.atan2(2 * xi * w0 * w, w0*w0 - w*w);
+                  dataPhase.push({ x: w, y: phi });
+                  });
+              
+                  ampChart.data.datasets[0].data = dataAmp;
+                  ampChart.update('none');
+                  
+                  phaseChart.data.datasets[0].data = dataPhase;
+                  phaseChart.update('none');
+              }
+              
+              // Gestionnaire de layout robuste pour Reveal.js
+              const triggerResize = () => {
+                  const containers = document.querySelectorAll('.chart-wrapper');
+                  containers.forEach(c => {
+                  const canvas = c.querySelector('canvas');
+                  canvas.width = c.clientWidth;
+                  canvas.height = c.clientHeight;
+                  });
+                  ampChart.resize();
+                  phaseChart.resize();
+                  update();
+              };
+              
+              document.addEventListener('slidechanged', e => {
+                  if (e.currentSlide.contains(document.getElementById('ampChart'))) {
+                      setTimeout(triggerResize, 100);
+                  }
+              });
+              
+              document.getElementById('xi').oninput = update;
+              setTimeout(triggerResize, 200);
+              })();
+            </script>
+          </section>
+          <section data-background-color="#34415e" data-timing="300">
+            <h2>🙋 Des questions ?</h2>
+          </section>
+        </section>
+        <section data-timing="600">
+          <h1>En résumé</h1>
+          <ol>
+            <li>Oscillateur non-amorti, libre :
+              <p><span class="box">$ \lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t) $</span> ou <span class="box">$ X \sin(\omega_0 t + \phi) $</span></p>
+            </li>
+            <li>Oscillateur non-amorti, forçage de type $F_e(t) = F_0 \cos(\omega t)$ :
+              <ul>
+                <li>
+                  <p class="box">$$ x(t) = \underbrace{\lambda \cos(\omega_0 t) + \mu \sin(\omega_0 t)}_{x_h(t)} + \underbrace{\frac{F_0/m}{\omega_0^2 - \omega^2} \cos(\omega t)}_{x_p(t)} $$</p>
+                  <li>Résonance quand $\omega \approx \omega_0$</li>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <script type="module">
+      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.esm.js"
+      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.esm.js"
+      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.esm.js"
+      
+      let deck = new Reveal({
+          plugins: [RevealMath.KaTeX, RevealNotes],
+          hash: true,
+          slideNumber: "c/t",
+          totalTime: 7200,
+      });
+      
+      deck.on('ready', event => {
+          const defaultTime = 120; // 2 minutes par défaut
+          let totalSeconds = 0;
+      
+          document.querySelectorAll('.slides > section').forEach(section => {
+              // On vérifie si c'est une section horizontale ou verticale
+              const verticalSlides = section.querySelectorAll('section');
+              
+              if (verticalSlides.length > 0) {
+                  verticalSlides.forEach(s => {
+                      totalSeconds += parseInt(s.getAttribute('data-timing')) || defaultTime;
+                  });
+              } else {
+                  totalSeconds += parseInt(section.getAttribute('data-timing')) || defaultTime;
+              }
+          });
+      
+          const minutes = Math.floor(totalSeconds / 60);
+          console.log(`⏱️ DURÉE TOTALE PRÉVUE : ${minutes} minutes (${totalSeconds}s)`);
+      });
+      window.deck = deck;
+      deck.initialize();
+    </script>
+  </body>
+</html>

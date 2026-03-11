@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Publication_types on Hugo Pauget Ballesteros</title>
-    <link>http://localhost:35291/publication_types/</link>
+    <link>http://localhost:1313/publication_types/</link>
     <description>Recent content in Publication_types on Hugo Pauget Ballesteros</description>
-    <generator>Hugo -- 0.155.3</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 May 2025 23:08:16 +0200</lastBuildDate>
-    <atom:link href="http://localhost:35291/publication_types/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/publication_types/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>0</title>
-      <link>http://localhost:35291/publication_types/0/</link>
+      <link>http://localhost:1313/publication_types/0/</link>
       <pubDate>Sat, 10 May 2025 23:08:16 +0200</pubDate>
-      <guid>http://localhost:35291/publication_types/0/</guid>
+      <guid>http://localhost:1313/publication_types/0/</guid>
       <description></description>
     </item>
     <item>
       <title>1</title>
-      <link>http://localhost:35291/publication_types/1/</link>
+      <link>http://localhost:1313/publication_types/1/</link>
       <pubDate>Sat, 10 May 2025 22:56:31 +0200</pubDate>
-      <guid>http://localhost:35291/publication_types/1/</guid>
+      <guid>http://localhost:1313/publication_types/1/</guid>
       <description></description>
     </item>
   </channel>
