@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/theme/black.css">
+    <style>
+      :root {
+          --r-main-font: "Atkinson Hyperlegible Next";
+          --r-heading-font: "Atkinson Hyperlegible Next";
+          --r-main-font-size: 20px;
+          --r-heading-text-transform: none;
+      }
+      .box {
+          border: 2px solid #3498db;
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+          background-color: rgba(52, 152, 219, 0.1);
+      }
+      
+    </style>
+    <script type="module" src="oscillator.js"> </script>
+  </head>
+  <body> 
+    <div class="reveal">
+      <div class="slides">
+        <script src="https://unpkg.com/d3@7"></script>
+        <script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+        <section data-timing="60">
+          <h1>Cours 3</h1>
+          <p>Hugo Pauget Ballesteros</p>
+          <p>hugo.pauget@dalembert.upmc.fr</p>
+          <p>Moodle + <a href="https://paugesteros.com/courses/om/">https://paugesteros.com/courses/om/</a></p>
+        </section>
+        <section>
+          <h1>Introduction</h1>
+          <section data-timing="300">
+            <h2>Previously...</h2>
+            <p>Oscillateur harmonique...</p>
+            <ul> 
+              <li>Non-amorti
+                <ul>
+                  <li>Libre
+                    <li>Forcé</li>
+                  </li>
+                </ul>
+              </li>
+              <li>Amorti
+                <ul>
+                  <li>Libre
+                    <li>Forcé</li>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p class="fragment">Maintenant : le monde continu</p>
+          </section>
+          <section data-timing="300">
+            <h2>Du discret au continu</h2>
+            <p><em>Un super DM que vous allez adorer !*</em></p>
+            <embed src="/dm.pdf" width="100%" height="400" type="application/pdf">
+            <p style="font-size: .6em">*La direction décline toute responsabilité en cas de non-adoration. Aucun remboursement ne sera effectué.</p>
+          </section>
+        </section>
+        <section>
+          <h1>Vibrations longitudinales</h1>
+          <section data-timing="120">
+            <h2>Système : une barre</h2>
+            <figure style="background: #ffffff; border-radius: 20px"><img src="../figures/longitudinal.svg" style="width: 85%"></figure>
+          </section>
+          <section data-timing="300">
+            <h2>Mise en équation</h2>
+            <p>La masse de cette petite section est $dm = \rho Sdx$</p>
+            <p>
+              Le PFD appliqué à ce petit tronçon s'écrit : 
+              $$
+              \begin{aligned}
+              dm\frac{\partial^{2}u(x,t)}{\partial t^{2}} & = \frac{\partial N}{\partial x}dx \\
+              \rho S\frac{\partial^{2}u(x,t)}{\partial t^{2}} & = \frac{\partial N}{\partial x}.
+              \end{aligned}
+              $$
+              
+            </p>
+            <p>
+              Or, pour un matériau élastique homogène et isotrope, la mécanique des milieux continus nous dit que :
+              $$ \frac{N}{S} = E\frac{\partial u(x,t)}{\partial x}. $$
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Mise en équation</h2>
+            <p>
+              En combinant ces deux équations, on tombe sur :
+              $$\rho\frac{\partial^{2}u(x,t)}{\partial t^{2}} = E\frac{\partial^{2}u(x,t)}{\partial x^{2}}.$$
+              
+            </p>
+            <p>
+              Nous retrouvons alors l'équation de d'Alembert :
+              
+            </p>
+            <p class="box">$$\frac{\partial^{2}u(x,t)}{\partial t^{2}} - c_{L}^{2}\frac{\partial^{2}u(x,t)}{\partial x^{2}} = 0,$$</p>
+            <p>où \[c_{L} ≝ \sqrt{\frac{E}{\rho}}\] est la vitesse des ondes longitudinales.</p>
+          </section>
+          <section data-timing="60">
+            <h2>Résolution : le plan</h2>
+            <p>C'est toujours la même chose :</p>
+            <ol>
+              <li>On cherche des solutions sous une certaine forme
+                <li>On applique toutes les contraintes  et on espère avoir encore une solution à la fin</li>
+                <li>On utilise un théorème de maths pour dire que l'on a trouvé toutes les solutions</li>
+              </li>
+            </ol>
+          </section>
+          <section data-background-color="#345e3e" data-timing="600">
+            <h2>📝 Exercice : Solutions à l'équation de d'Alembert</h2>
+            <div class="instructions">
+              <ol>
+                <li>Injectez une fonction de la forme $u(x, t) = X(x) \Phi(t)$ dans l'équation de d'Alembert.
+                  <li>Isolez les termes dépendant de la variable spatiale $x$ à gauche et ceux dépendant de la variable temporelle $t$ à droite.</li>Pourquoi ces deux membres doivent-ils être constants ?
+                  <li>En notant cette constante $- \omega^2$, résolvez les deux équations différentielles impliquant $X(x)$ et $\Phi(t)$</li>
+                </li>
+              </ol>
+            </div>
+          </section>
+          <section data-timing="900">
+            <h2>Solutions à l'équation de d'Alembert</h2>
+            <p>
+              En injectant dans l'équation de d'Alembert, on tombe sur l'équation suivante :
+              
+              $$\frac{c_{L}^{2}}{X(x)}\frac{\partial^{2}X(x)}{\partial x^{2}} = \frac{1}{\Phi(t)}\frac{\partial^{2}\Phi(t)}{\partial t^{2}}.$$
+              
+            </p>
+            <p>Or, le membre de gauche dépend uniquement de $x$ tandis que le membre de droite uniquement de $t$. Les deux membres étant égaux, ils doivent être tous deux indépendants à la fois de la position <b>et</b> du temps.</p>
+            <p>
+              On peut donc écrire :
+              $$\frac{c_{L}^{2}}{X(x)}\frac{\partial^{2}X(x)}{\partial x^{2}} = \frac{1}{\Phi(t)}\frac{\partial^{2}\Phi(t)}{\partial t^{2}} = \text{ cste }.$$
+              
+            </p>
+          </section>
+          <section data-timing="00">
+            <h2></h2>
+            <p>
+              Intéressons-nous au cas où cette constante est négative et notons-la $\omega^{2}$ :
+              $$\frac{c_{L}^{2}}{X(x)}\frac{\partial^{2}X(x)}{\partial x^{2}} = \frac{1}{\Phi(t)}\frac{\partial^{2}\Phi(t)}{\partial t^{2}} = - \omega^{2}$$
+              
+            </p>
+            <p>
+              On se retrouve alors avec deux équations différentielles :
+              
+              $$
+              \begin{cases}
+              \frac{\partial^{2}X(x)}{\partial x^{2}} + \frac{\omega^{2}}{c_{L}^{2}}X(x) = 0 \\ \\
+              \frac{\partial^{2}\Phi(t)}{\partial t^{2}} + \omega^{2}\Phi(t) = 0
+              \end{cases}
+              $$
+              
+            </p>
+            <p>
+              que l'on sait maintenant bien résoudre : 
+              $$\begin{cases}
+              \begin{aligned}
+              \Phi(t) & = A\cos(\omega t) + B\sin(\omega t) \\
+              X(x) & = C\cos(kx) + D\sin(kx),\quad k ≝ \frac{\omega}{c_{L}}
+              \end{aligned}
+              \end{cases}$$
+              
+            </p>
+          </section>
+          <section data-timing="0">
+            <h2></h2>
+            <p>
+              Au final, on a trouvé des solutions du type $u(x,t) = X(x)\Phi(t)$ d'expression :
+              
+              $$u(x,t) = X(x)\Phi(t) = \left\lbrack A\cos(\omega t) + B\sin(\omega t) \right\rbrack\left\lbrack C\cos(kx) + D\sin(kx) \right\rbrack.$$
+              
+              où les constantes $A,B,C,D\text{ et }\omega$ restent à déterminer en fonction des conditions initiales et des conditions aux limites.
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Conditions aux limites</h2>
+            <p>En réalité, une barre n'est pas infinie.</p>
+            <p>En $x = 0$ et $x = L$ :</p>
+            <ol>
+              <li>Bord encastré 
+                <div class="box">$$u(x = 0, t) = 0 $$</div>
+                <li>Bord libre 
+                  <div class="box">$$ N(x = 0) = 0 \implies \frac{\partial u}{\partial x}(x = 0, t) = 0  $$</div>
+                </li>
+              </li>
+            </ol>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Conditions aux limites</h2>
+            <div class="instructions">
+              <ol>
+                <li>Imaginons une barre où les deux bords sont encastrés. En écrivant les conditions en $x = 0$ et $x = L$, montrez que seule une partie des solutions trouvées précédemment fonctionnent toujours.</li>
+              </ol>
+            </div>
+          </section>
+          <section data-timing="300">
+            <h2>Apparition des modes propres</h2>
+            <p>
+              Nos deux conditions s'écrivent alors :
+              $$ u(x = 0,t) = 0\quad\text{ et }\quad u(x = L,t) = 0,\quad\forall t \in {\mathbb{R}}.$$
+              
+            </p>
+            <p>
+              En prenant en compte ces conditions dans l'expression de nos solutions, il vient que :
+              $$C = 0\quad\text{ et }\quad\sin(kL) = 0.$$
+              
+            </p>
+            <p>
+              Respecter la première condition implique la disparition du terme $C\cos(kx)$. 
+              La deuxième condition implique que \(k\) prenne des valeurs particulières :
+              $$ k_{m} = \frac{m\pi}{L},\quad m \in {\mathbb{N}}^{\ast}.$$
+              
+            </p>
+            <p>
+              Au final, seules certaines fonctions \(X(x)\) trouvées précédemment permettent de respecter les conditions aux limites. Il s'agit des : $$X_{m} = D_{m}\sin(k_{m}x).$$
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Visualisation des modes propres</h2>
+            <p>Les modes propres sont donnés par : $X_{m}(x) = D_{m}\sin\left(m \pi \frac{x}{L}\right)$</p>
+            <div class="interactive-plot" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+              <label for="mode-slider" style="font-size: 1.2em; font-weight: bold;">
+                 Mode $m$ = <span id="mode-label" style="color: #e74c3c;">1</span></label>
+              <input id="mode-slider" type="range" min="1" max="10" value="1" step="1" style="width: 60%; margin: 15px 0; cursor: pointer;">
+              <div id="mode-plot" style="background: white; padding: 10px; border-radius: 8px;"></div>
+            </div>
+            <script>
+              const slider = document.getElementById('mode-slider');
+              const label = document.getElementById('mode-label');
+              const targetPlot = '#mode-plot';
+              
+              // Fonction pour redessiner le graphique en fonction de m
+              function drawMode(m) {
+                  // On nettoie le conteneur avant de redessiner (évite les superpositions)
+                  document.querySelector(targetPlot).innerHTML = ''; 
+                  
+                  functionPlot({
+                      target: targetPlot,
+                      width: 750, 
+                      height: 350,
+                      xAxis: { domain: [0, 1], label: 'Position normalisée (x/L)' },
+                      yAxis: { domain: [-1.2, 1.2], label: 'Amplitude' },
+                      grid: true,
+                      disableZoom: true,
+                      data: [{
+                          // On trace sin(m * PI * x) avec x variant de 0 à 1
+                          fn: `sin(${m} * PI * x)`,
+                          color: '#e74c3c',
+                          attr: { "stroke-width": 3 }
+                      }]
+                  });
+              }
+              
+              // Initialisation au chargement de la présentation
+              drawMode(slider.value);
+              
+              // Écouteur d'événement : se déclenche à chaque fois qu'on bouge le slider
+              slider.addEventListener('input', function() {
+                  const m = this.value;
+                  label.innerText = m; // Met à jour le texte
+                  drawMode(m);         // Met à jour la courbe
+              });
+              
+            </script>
+          </section>
+          <section data-timing="180">
+            <p>
+              Au final, nous avons une famille de solutions possibles de la forme :
+              
+              <div class="box">$$ u_{m}(x,t) = X_{m}(x)\Phi_{m}(t) = D_{m}\sin(k_{m}x)\left\lbrack A_{m}\cos(\omega_{m}t) + B_{m}\sin(\omega_{m}t) \right\rbrack,$$</div>
+              
+            </p>
+            <p>où $k_{m}$ et $\omega_{m}$ ne peuvent prendre qu'un certain nombre de valeurs, et où les constantes $D_{m}$, $A_{m}$ et $B_{m}$ restent à déterminer.</p>
+          </section>
+          <section>
+            <h2>Une petite remarque : relation d'orthogonalité</h2>
+            <p>
+              On peut montrer que les fonctions \(X_{m}\) sont orthonormales sur l'intervalle \(\lbrack 0,L\rbrack\).
+              
+            </p>
+            <p>
+              Ceci se traduit par la relation suivante : 
+              \[\int_{0}^{L}X_{m}(x)X_{n}(x)dx = \delta_{m,n}.\]
+              
+              
+            </p>
+          </section>
+          <section data-timing="180">
+            <h2>Oscillations libres</h2>
+            <p>
+              Considérons une combinaison linéaire des solutions trouvées (cas encastré-encastré) :
+              
+              
+              <div class="box">$$u(x,t) = \sum_{m = 1}^{+ \infty}X_{m}(x)\Phi_{m}(t) = \sum_{m = 1}^{+ \infty}\sqrt{\frac{2}{L}}\sin(k_{m}x)\left\lbrack A_{m}\cos(\omega_{m}t) + B_{m}\sin(\omega_{m}t) \right\rbrack$$ </div>
+              
+              Comme l'équation de d'Alembert est linéaire, cette combinaison linéaire est aussi solution de cette équation. De plus, cette solution vérifie aussi les conditions aux limites.
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Oscillations libres - Conditions initiales</h2>
+            <p>
+              Supposons que nous ayons une fonction \(u_{0}(x)\) donnant la position initiale et une fonction \({\dot{u}}_{0}(x)\) donnant la vitesse initiale de n'importe quel point de notre barre. 
+              
+              \[\begin{cases}
+              \begin{aligned}
+              u_{0}(x) &≝ u(x,0) = \sum_{m = 1}^{\infty}A_{m}X_{m}(x) \\
+              {\dot{u}}_{0}(x) &≝ \dot{u}(x,0) = \sum_{m = 1}^{\infty}\omega_{m}B_{m}X_{m}(x)
+              \end{aligned}
+              \end{cases}\]
+              
+              En multipliant ces deux équations par \(X_{m}(x)\), en intégrant de \(0\) à \(L\) puis en tenant compte de la relation d'orthogonalité, il vient :
+              
+              \[A_{m} = \int_{0}^{L}u_{0}(x)X_{m}(x)dx\quad\text{ et }\quad B_{m} = \frac{1}{\omega_{m}}\int_{0}^{L}{\dot{u}}_{0}(x)X_{m}(x)dx.\]
+              
+              En conclusion, nous avons trouvé une solution de l'équation de d'Alembert respectant les conditions aux limites et les conditions initiales.
+              
+            </p>
+          </section>
+          <section data-timing="300">
+            <h2>Oscillations libres : le récap'</h2>
+            <ol>
+              <li>On a cherché puis trouvé des solutions sous la forme $u(x, t) = X(x) \Phi(t)$</li>
+              <li>Seules certaines fonctions $X(x)$ de ces solutions vérifient les conditions aux limites (en $x=0$ et $x=L$). On les appelle <b>modes propres</b>.</li>
+              <li>Une combinaison linéaire de toutes les solutions trouvées reste solution de l'équation de d'Alembert.</li>
+              <li>En appliquant les conditions initiales à cette combinaison linéaire, on trouve une seule solution qui vérifie l'équation de d'Alembert.</li>
+              <li>Comme notre barre ne peut avoir qu'un seul déplacement possible une fois que l'on a fixé les conditions initiales, on sait que l'on a trouvé <em>la solution</em> qui décrit le mouvement.</li>
+            </ol>
+          </section>
+          <section data-timing="300">
+            <h2>Oscillations forcées</h2>
+            <p>Imaginons maintenant que notre système est soumis à une force extérieure \(f(x,t)\) (il s'agit en réalité d'une force par unité de masse pour que les dimensions marchent bien) :</p>
+            <div class="box">\[\frac{\partial^{2}u(x,t)}{\partial t^{2}} - c_{L}^{2}\frac{\partial^{2}u(x,t)}{\partial x^{2}} = f(x,t)\]</div>
+            <p>Voyons s'il existe une solution de la forme : \[u(x,t) = \sum_{m = 1}^{+ \infty}X_{m}(x)q_{m}(t).\]</p>
+            <p>où les $q_m(t)$ sont appelées les <i>coordonnées modales</i>.</p>
+          </section>
+          <section data-timing="300">
+            <h2></h2>
+            <p>En injectant dans notre équation différentielle, nous obtenons : \[\sum_{m = 1}^{+ \infty}X_{m}(x)\frac{\partial^{2}q_{m}(t)}{\partial t^{2}} - c_{L}^{2}q_{m}(t)\frac{\partial^{2}X_{m}(x)}{\partial x^{2}} = f(x,t)\]</p>
+            <p>ou encore : \[\sum_{m = 1}^{+ \infty}\left\lbrack \frac{\partial^{2}q_{m}(t)}{\partial t^{2}} + \omega_{m}^{2}q_{m}(t) \right\rbrack X_{m}(x) = f(x,t)\]</p>
+            <p>En multipliant cette équation par \(X_{n}(x)\) et en intégrant de \(0\) à \(L\), nous obtenons : \[\frac{\partial^{2}q_{n}(t)}{\partial t^{2}} + \omega_{n}^{2}q_{n}(t) = \int_{0}^{L}f(x,t)X_{n}(x)dx\]</p>
+            <p>Il ne reste "plus qu'à" résoudre cette équation différentielle. Nous savons déjà que les solutions de cette équation s'écrivent comme la somme des solutions de l'équation homogène (correspondant au régime libre, ou régime transitoire en présence d'amortissement) et d'une solution particulière (correspondant au régime stationnaire). Afin de ne pas surcharger les calculs, et comme nous nous intéressons surtout au régime stationnaire, nous nous contenterons la plupart du temps de trouver une solution particulière.</p>
+          </section>
+          <section data-background-color="#345e3e" data-timing="300">
+            <h2>📝 Exercice : Oscillations forcées</h2>
+            <div class="instructions">
+              <p>Supposons que \(f\) est une fonction sinusoïdale, dépendant uniquement du temps : $f(x,t) = f_{0}\sin(\Omega t)$ .</p>
+              <p>Cherchons une solution de la forme : \[u(x,t) = \sum_{m = 1}^{+ \infty}X_{m}(x)q_{m}(t)\]</p>
+              <ol>
+                <li>Testez en prenant : \[q_{n}(t) = A_{n}\sin(\Omega t)\]</li>
+                <li>Écrivez alors le déplacement $u(x, t)$</li>
+              </ol>
+            </div>
+          </section>
+          <section>
+            <h2></h2>
+            <p>Nous trouvons la relation suivante : \[A_{n} = \frac{f_{0}\int_{0}^{L}X_{n}(x)dx}{\omega_{n}^{2} - \Omega^{2}}\]</p>
+            <p>Le déplacement s'écrit alors (en régime stationnaire) : \[u(x,t) = \sum_{n = 1}^{\infty}X_{n}(x)q_{n}(t) = f_{0}\sum_{n = 1}^{\infty}\frac{\int_{0}^{L}X_{n}(x)dx}{\omega_{n}^{2} - \Omega^{2}}X_{n}(x)\sin(\Omega t)\]</p>
+          </section>
+          <section data-timing="300">
+            <h2>Spectre des résonances</h2>
+            <div class="plot-scope">
+              <style>
+                .plot-scope {
+                    .axis path, .axis line {
+                        stroke: #ffffff;
+                        opacity: .4;
+                    }
+                    text {
+                        fill: #fff;
+                    }
+                }
+              </style>
+            </div>
+            <p>Contrairement à l'oscillateur simple (1 pic), la réponse en fréquence d'un milieu continu fait apparaître tous ses modes propres.</p>
+            <div id="continuous-resonance-plot" style="margin: 0 auto; background: white; padding: 10px; border-radius: 8px;"></div>
+            <script>
+              functionPlot({
+                  target: '#continuous-resonance-plot',
+                  width: 700, height: 350,
+                  xAxis: { domain: [0, 4], label: 'Fréquence de forçage (w/w_1)' },
+                  yAxis: { domain: [0, 10], label: 'Amplitude globale' },
+                  disableZoom: true,
+                  data: [{
+                      fn: '1/abs(1 - x^2) + 0.5/abs(4 - x^2) + 0.3/abs(9 - x^2)',
+                      color: '#e74c3c',
+                      nSamples: 1000,
+                      attr: { "stroke-width": 3 }
+                  }]
+              });
+              
+            </script>
+          </section>
+          <section data-timing="300">
+            <h2>Visualisation : Dynamique de la barre</h2>
+            <div class="anim-controls" style="margin-bottom: 20px;">
+              <button onclick="setAnimationMode('mode1')">Mode 1</button>
+              <button onclick="setAnimationMode('mode2')">Mode 2</button>
+              <button onclick="setAnimationMode('choc')">Choc (Libre)</button>
+              <button onclick="setAnimationMode('force')">Forçage continu</button>
+            </div>
+            <canvas id="bar-canvas" width="800" height="200" style="background: #f8f9fa; border-radius: 10px; border: 1px solid #ccc;"></canvas>
+            <script>
+              const canvas = document.getElementById('bar-canvas');
+              const ctx = canvas.getContext('2d');
+              
+              // Paramètres de la barre
+              const N = 60; // Nombre de particules affichées
+              const L = canvas.width * 0.8; // Longueur visuelle
+              const startX = canvas.width * 0.1;
+              const centerY = canvas.height / 2;
+              const scale = 40; // Facteur d'amplification du déplacement u(x,t)
+              
+              // Variables physiques
+              let t = 0;
+              const dt = 0.05;
+              const c = 150; // Célérité de l'onde
+              const w1 = Math.PI * c / L; // Pulsation du mode 1
+              
+              let currentAnimMode = 'mode1';
+              
+              // Expose la fonction de changement de mode globalement
+              window.setAnimationMode = function(mode) {
+                  currentAnimMode = mode;
+                  t = 0; // On réinitialise le temps à chaque changement
+              };
+              
+              // La fonction magique qui calcule u(x,t) selon le régime
+              function getDisplacement(x, t) {
+                  if (currentAnimMode === 'mode1') {
+                      // Mode stationnaire 1 : sin(pi*x/L)*cos(w1*t)
+                      return Math.sin(Math.PI * x / L) * Math.cos(w1 * t);
+                  } 
+                  else if (currentAnimMode === 'mode2') {
+                      // Mode stationnaire 2 : sin(2*pi*x/L)*cos(2*w1*t)
+                      return Math.sin(2 * Math.PI * x / L) * Math.cos(2 * w1 * t);
+                  } 
+                  else if (currentAnimMode === 'choc') {
+                      // 1. Forme du choc (une gaussienne bien resserrée)
+                      const pulse = (pos) => {
+                          const center = L / 88; // On démarre proche du bord gauche
+                          const width = L * L / 150; // Épaisseur du choc
+                          return 3.0 * Math.exp(-Math.pow(pos - center, 2) / width);
+                      };
+              
+                      // 2. La fonction mathématique "Magique" (Extension impaire périodique)
+                      // Elle garantit que les ondes s'annulent parfaitement sur les murs.
+                      const F = (pos) => {
+                          let p = ((pos % (2 * L)) + 2 * L) % (2 * L);
+                          if (p <= L) {
+                              return pulse(p); // L'onde à l'endroit
+                          } else {
+                              return -pulse(2 * L - p); // L'onde inversée (réflexion)
+                          }
+                      };
+              
+                      // 3. D'Alembert : Onde vers la droite + Onde vers la gauche
+                      return 0.5 * (F(x - c * t) + F(x + c * t));
+                  } 
+                  else if (currentAnimMode === 'force') {
+                      // Régime forcé : un transitoire amorti (e^-at) + un stationnaire (sin)
+                      let w_force = 1.1 * w1; // On force proche de la résonance
+                      let transient = Math.exp(-t * 1.5) * Math.sin(Math.PI * x / L) * Math.cos(w1 * t);
+                      let steady = (1 - Math.exp(-t * 1.5)) * Math.sin(Math.PI * x / L) * Math.sin(w_force * t);
+                      return transient + steady * 1.5;
+                  }
+                  return 0;
+              }
+              
+              // Boucle d'animation
+              function draw() {
+                  ctx.clearRect(0, 0, canvas.width, canvas.height);
+                  
+                  // Tracé des limites (les murs)
+                  ctx.fillStyle = '#333';
+                  ctx.fillRect(startX - 10, centerY - 40, 10, 80);
+                  ctx.fillRect(startX + L, centerY - 40, 10, 80);
+              
+                  // Tracé des particules
+                  ctx.fillStyle = '#3498db';
+                  for(let i = 0; i <= N; i++) {
+                      let x_eq = (i / N) * L; // Position d'équilibre
+                      let u = getDisplacement(x_eq, t); // Le calcul de l'onde
+                      
+                      // On dessine la particule à sa position déformée
+                      ctx.beginPath();
+                      ctx.arc(startX + x_eq + u * scale, centerY, 4, 0, 2 * Math.PI);
+                      ctx.fill();
+                  }
+                  
+                  t += dt;
+                  requestAnimationFrame(draw);
+              }
+              
+              draw(); // Lancer l'animation
+            </script>
+          </section>
+        </section>
+      </div>
+    </div>
+    <script type="module">
+      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.esm.js"
+      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.esm.js"
+      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.esm.js"
+      
+      let deck = new Reveal({
+          plugins: [RevealMath.KaTeX, RevealNotes],
+          hash: true,
+          slideNumber: "c/t",
+          totalTime: 7200,
+      });
+      
+      deck.on('ready', event => {
+          const defaultTime = 120; // 2 minutes par défaut
+          let totalSeconds = 0;
+      
+          document.querySelectorAll('.slides > section').forEach(section => {
+              // On vérifie si c'est une section horizontale ou verticale
+              const verticalSlides = section.querySelectorAll('section');
+              
+              if (verticalSlides.length > 0) {
+                  verticalSlides.forEach(s => {
+                      totalSeconds += parseInt(s.getAttribute('data-timing')) || defaultTime;
+                  });
+              } else {
+                  totalSeconds += parseInt(section.getAttribute('data-timing')) || defaultTime;
+              }
+          });
+      
+          const minutes = Math.floor(totalSeconds / 60);
+          console.log(`⏱️ DURÉE TOTALE PRÉVUE : ${minutes} minutes (${totalSeconds}s)`);
+      });
+      window.deck = deck;
+      deck.initialize();
+    </script>
+  </body>
+</html>
