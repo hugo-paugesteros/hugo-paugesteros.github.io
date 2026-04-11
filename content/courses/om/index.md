@@ -39,6 +39,7 @@ Contenu de l'UE :
     - [Cours 1](slides/cours1.html)
     - [Cours 2](slides/cours2.html)
     - [Cours 3](slides/cours3.html)
+    - [Cours 4](slides/cours4.html)
 - [DM (optionnel)](dm.pdf)
 ### Related Links
 

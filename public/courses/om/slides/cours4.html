@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@latest/dist/theme/black.css">
+    <style>
+      :root {
+          --r-main-font: "Atkinson Hyperlegible Next";
+          --r-heading-font: "Atkinson Hyperlegible Next";
+          --r-main-font-size: 20px;
+          --r-heading-text-transform: none;
+      }
+      .box {
+          border: 2px solid #3498db;
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+          background-color: rgba(52, 152, 219, 0.1);
+      }
+      
+    </style>
+    <script type="module" src="oscillator.js"> </script>
+  </head>
+  <body> 
+    <div class="reveal">
+      <div class="slides">
+        <section data-timing="60">
+          <h1>Cours 4</h1>
+          <p>Hugo Pauget Ballesteros</p>
+          <p>hugo.pauget@dalembert.upmc.fr</p>
+          <p>Moodle + <a href="https://paugesteros.com/courses/om/">https://paugesteros.com/courses/om/</a></p>
+        </section>
+        <section>
+          <h1>Previously...</h1>
+          <section>
+            <h2>Le système...</h2>
+            <figure style="background: #ffffff; border-radius: 20px"><img src="../figures/longitudinal.svg" style="width: 100%"></figure>
+          </section>
+          <section>
+            <h2>Le plan...</h2>
+            <ol>
+              <li class="fragment">PFD : équation de d'Alembert $$\frac{\partial^{2}u(x,t)}{\partial t^{2}} - c_{L}^{2}\frac{\partial^{2}u(x,t)}{\partial x^{2}} = 0$$
+                <li class="fragment">Solutions de la forme $X(x) \Phi(t)$ ?</li>
+                <li class="fragment">Conditions aux limites : $X(x)$ ne peut prendre que certaines formes (modes propres)</li>
+                <li class="fragment">Éq. diff. + CI : $$u(x,t) = \sum_{m = 1}^{+ \infty}X_{m}(x)\Phi_{m}(t) = \sum_{m = 1}^{+ \infty}\sqrt{\frac{2}{L}}\sin(k_{m}x)\left\lbrack A_{m}\cos(\omega_{m}t) + B_{m}\sin(\omega_{m}t) \right\rbrack$$</li>
+                <li class="fragment">Conditions initions : on trouve $A_m$ et $B_m$</li>
+              </li>
+            </ol>
+          </section>
+          <section>
+            <h2>Ajourd'hui...</h2>
+            <p>C'est pareil (ou presque) !</p>
+          </section>
+        </section>
+        <section>
+          <h1>Ondes transversales</h1>
+          <section data-timing="120">
+            <h2>Système : une barre</h2><img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Beam_mode_6.gif" style="width: 85%">
+          </section>
+          <section data-timing="120">
+            <h2>Système : une barre</h2>
+            <figure style="background: #ffffff; border-radius: 20px"><img src="../figures/transverse.svg" style="width: 85%"></figure>
+          </section>
+          <section>
+            <h2>Mise en équation</h2>
+            <p class="fragment">
+              La masse de cette petite section est \(dm = \rho Sdx\). On applique le PFD à ce petit tronçon : 
+              \[\begin{aligned}
+                  \rho Sdx\frac{\partial^{2}v(x,t)}{\partial t^{2}} & = T(x,t) - T(x + dx,t) + dxf(x,t) \\
+                  & = dxf(x,t) - dx\frac{\partial T(x,t)}{\partial x} \\
+                  \rho S\frac{\partial^{2}v(x,t)}{\partial t^{2}} & = f(x,t) - \frac{\partial T(x,t)}{\partial x}.
+              \end{aligned}\]
+              
+            </p>
+            <p class="fragment">
+              Par l'équilibre des moments en \(x + dx\) on a : 
+              \[\begin{aligned}
+                  M(x + dx,t) - M(x,t) - dxT(x,t) & = 0 \\
+                  dx\frac{\partial M(x,t)}{\partial x} - dxT(x,t) & = 0 \\
+                  T(x,t) & = \frac{\partial M(x,t)}{\partial x}.
+              \end{aligned}\]
+              
+            </p>
+            <p class="fragment">
+              En injectant, on trouve : \[\rho S\frac{\partial^{2}v(x,t)}{\partial t^{2}} = f(x,t) - \frac{\partial^{2}M(x,t)}{\partial x^{2}}.\]
+              
+            </p>
+          </section>
+          <section>
+            <h2>Mise en équation</h2>
+            <p>
+              On peut démontrer le fait que : \[M(x,t) = EI\frac{\partial^{2}v(x,t)}{\partial x^{2}}.\]
+              
+              On trouve alors : \[\rho S\frac{\partial^{2}v(x,t)}{\partial t^{2}} = f(x,t) - EI\frac{\partial^{4}v(x,t)}{\partial x^{4}},\]
+              
+              soit en ré-arrangeant : \[\frac{\partial^{2}v(x,t)}{\partial t^{2}} + c_{T}^{2}\frac{\partial^{4}v(x,t)}{\partial x^{4}} = \frac{1}{\rho S}f(x,t)\] où \(f(x,t)\) est une densité linéique de force et où : \[c_{T} ≝ \sqrt{\frac{EI}{\rho S}}\]
+              
+            </p>
+          </section>
+          <section data-background-color="#345e3e">
+            <h2>📝 Exercice : Solutions : cas libre</h2>
+            <div class="instructions">
+              <p>Intéressons-nous premièrement au cas libre (\(f(x,t) = 0\)) : \[\frac{\partial^{2}v(x,t)}{\partial t^{2}} + c_{T}^{2}\frac{\partial^{4}v(x,t)}{\partial x^{4}} = 0\]</p>
+              <ol>
+                <li>Injectez une fonction de la forme $v(x, t) = X(x) \Phi(t)$ dans l'équation différentielle précédente.</li>
+                <li>Isolez les termes dépendants du temps et ceux dépendants de l'espace. Que remarque-t-on ?</li>
+                <li>En notant cette constante \(\omega^{2}\), donnez les deux équations différentielles vérifiées par $X(x)$ et $\Phi(t)$</li>
+                <ol>
+                  <li>Donnez la forme de $\Phi(t)$ <em>(que vous connaissez bien maintenant)</em>
+                    <li>Pour $X(x)$, cherchez des solutions sous la forme $X(x) = e^{rx}$</li>
+                  </li>
+                </ol>
+              </ol>
+            </div>
+          </section>
+          <section>
+            <h2>Solutions : cas libre</h2>
+            <p>
+              Essayons de trouver des solutions sous la forme : \[v(x,t) = X(x)\Phi(t)\]
+              
+              En injectant dans l'équation, on tombe sur l'équation suivante :
+              
+              \[\frac{c_{T}^{2}}{X(x)}\frac{\partial^{4}X(x)}{\partial x^{4}} = - \frac{1}{\Phi(t)}\frac{\partial^{2}\Phi(t)}{\partial t^{2}}.\]
+              
+              Ces deux membres doivent être constants par rapport au temps et à l'espace. Notons cette constante \(\omega^{2}\) :
+              
+              \[\frac{c_{T}^{2}}{X(x)}\frac{\partial^{4}X(x)}{\partial x^{4}} = - \frac{1}{\Phi(t)}\frac{\partial^{2}\Phi(t)}{\partial t^{2}} = \omega^{2.}\]
+              
+              Ceci conduit aux deux équations différentielles :
+              
+              \[
+                  \begin{cases}
+                      \frac{\partial^{4}X(x)}{\partial x^{4}} - \underset{\gamma^{4}}{\underbrace{\frac{\omega^{2}}{c_{T}^{2}}}}X(x) &= 0 \\
+                      
+                      \frac{\partial^{2}\Phi(t)}{\partial t^{2}} + \omega^{2}\Phi(t) &= 0
+                  \end{cases}
+              \]
+              
+            </p>
+          </section>
+          <section>
+            <h2>Solutions : cas libre</h2>
+            <p>
+              Nous connaissons bien la seconde équation. Ses solutions s'écrivent : \[\Phi(t) = A\cos(\omega t) + B\sin(\omega t).\]
+              
+              Pour l'équation différentielle sur \(X(x)\) , nous pouvons essayer de trouver des équations sous la forme \(X(x) = \hat{X}e^{rx}\). Nous trouvons alors les racines suivantes \(r = \gamma, - \gamma,i\gamma, - i\gamma\). Une solution \(X(x)\) peut donc s'écrire comme une combinaison linéaire de ces 4 solutions : \[\begin{aligned}
+              X(x) & = C_{1}e^{\gamma x} + C_{2}e^{- \gamma x} + C_{3}e^{i\gamma x} + C_{4}e^{- i\gamma x} \\
+              & = C\cos(\gamma x) + D\sin(\gamma x) + G\cosh(\gamma x) + H\sinh(\gamma x)
+              \end{aligned}\]
+              
+              Comme toujours avec les équations différentielles, une fois qu'on a trouvé une forme de solutions, on regarde si on en a trouvé assez pour pouvoir dire qu'on les a toutes trouvées. Ici nous avons une équation différentielle linéaire d'ordre 4, et les solutions trouvées sont une combinaison linéaire de quatre fonctions ``indépendantes''. Un théorème mathématique nous assure qu'on a trouvé toutes les solutions.
+              
+              
+            </p>
+          </section>
+          <section>
+            <h2>Conditions aux limites</h2>
+            <ul>
+              <li>Bord encastré : le déplacement \(v\) et la rotation \(\theta \approx \frac{\partial v(x,t)}{\partial x}\) sont nuls en ce point.</li>
+              <li>Bord libre : l'effort tranchant \(T \propto \frac{\partial^{3}v(x,t)}{\partial x^{3}}\) et le moment \(M \propto \frac{\partial^{2}v(x,t)}{\partial x^{2}}\) sont nuls en ce point.</li>
+              <li>Appui simple : le déplacement \(v\) et le moment \(M \propto \frac{\partial^{2}v(x,t)}{\partial x^{2}}\) sont nuls en ce point.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Conditions aux limites : un exemple</h2>
+            <p>
+              Deux bords encastrés : 
+              \[\begin{cases}
+              v(x = 0,t) & = 0 \\
+              \frac{\partial v}{\partial x}(x = 0,t) & = 0 \\
+              v(x = L,t) & = 0 \\
+              \frac{\partial v}{\partial x}(x = L,t) & = 0
+              \end{cases}\]
+              
+              En prenant en compte les conditions en \(x = 0\) dans l'expression de nos solutions, il vient que : 
+              \[\begin{cases}
+              C & = - G \\
+              D & = - H
+              \end{cases}\]
+              
+              Puis en prenant en compte les conditions en \(x = L\) : 
+              \[\begin{cases}
+              C\left\lbrack \cos(\gamma L) - \cosh(\gamma L) \right\rbrack + D\left\lbrack \sin(\gamma L) - \sinh(\gamma L) \right\rbrack &
+              = 0 \\
+              - C\left\lbrack \sin(\gamma L) + \sinh(\gamma L) \right\rbrack + D\left\lbrack \cos(\gamma L) - \cosh(\gamma L) \right\rbrack & = 0
+              
+              \end{cases}\]
+              
+              Ce système d'équations s'écrit sous forme matricielle : 
+              \[\underset{M}{\underbrace{\begin{pmatrix}
+              \cos(\gamma L) - \cosh(\gamma L) & \sin(\gamma L) - \sinh(\gamma L) \\
+              - \sin(\gamma L) - \sinh(\gamma L) & \cos(\gamma L) - \cosh(\gamma L)
+              \end{pmatrix}}}
+              \begin{pmatrix}
+              C \\
+              D
+              \end{pmatrix} 
+              = 
+              \begin{pmatrix}
+              0 \\
+              0
+              \end{pmatrix}
+              \]
+            </p>
+          </section>
+          <section>
+            <h2>Conditions aux limites : un exemple</h2>
+            <p>
+              Regardons les conditions pour que $\det(M) \ne 0$ :
+              
+              \[\begin{aligned}
+              \det(M) & = 0 \\
+              \left\lbrack \cos(\gamma L) - \cosh(\gamma L) \right\rbrack\left\lbrack \cos(\gamma L) - \cosh(\gamma L) \right\rbrack 
+              + \left\lbrack \sin(\gamma L) + \sinh(\gamma L) \right\rbrack\left\lbrack \sin(\gamma L) - \sinh(\gamma L) \right\rbrack & = 0 \\
+              \ldots & = 0 \\
+              \cos(\gamma L)\cosh(\gamma L) & = 1
+              \end{aligned}\]
+              
+              Cette équation n'admet pas de solutions analytiques : il nous faut les calculer numériquement. Dans la suite nous notons \(\gamma_{m}\) ces solutions.
+              
+              Au final, seules certaines fonctions \(X(x)\) trouvées précédemment permettent de respecter les conditions aux limites. Il s'agit des : \[X_{m}(x) = C_{m}\left\lbrack \cos(\gamma_{m}x) - \cosh(\gamma_{m}x) \right\rbrack + D_{m}\left\lbrack \sin(\gamma_{m}x) - \sinh(\gamma_{m}x) \right\rbrack.\]
+              
+              Ce qui nous donne une famille de solutions possibles de la forme : 
+              \[\begin{aligned}
+              u_m(x,t) = & X_{m}(x) && \times \Phi_{m}(t) \\
+              = & \left. \left\lbrack C_{m}\left\lbrack \cos(\gamma_{m}x) - \cosh(\gamma_{m}x) \right\rbrack + D_{m}\left\lbrack \sin(\gamma_{m}x) - \sinh(\gamma_{m}x) \right\rbrack \right\rbrack \right. 
+              &&\times \left. \left\lbrack A_{m}\cos(\omega_{m}t) + B_{m}\sin(\omega_{m}t) \right\rbrack \right.
+              \end{aligned}\]
+              
+              où \(\gamma_{m}\) et \(\omega_{m}\) ne peuvent prendre qu'un certain nombre de valeurs, et où les constantes \(C_{m}\), \(D_{m}\), \(A_{m}\) et \(B_{m}\) restent à déterminer en fonction des conditions initiales.
+              
+              
+            </p>
+          </section>
+          <section>
+            <h2>Eq. diff. + CL</h2>
+            <p>
+              Nous avons trouvé une famille de solutions vérifiant l'équation et les conditions aux limites (dans le cas encastré - encastré) :
+              \[v_m(x,t) = X_{m(x)}\Phi_{m(t)}\]
+              
+              Considérons maintenant une combinaison linéaire de ces solutions : 
+              \[v(x,t) = \sum_{m = 1}^{+ \infty}X_{m(x)}\Phi_{m(t)}\]
+              
+              Comme l'équation est linéaire, cette combinaison linéaire est aussi solution de l'équation différentielle. De plus, cette solution vérifie aussi les conditions aux limites.
+              
+              Nous allons maintenant voir pourquoi cette combinaison linéaire permet de décrire n'importe quel mouvement possible dans notre barre.
+              
+            </p>
+          </section>
+          <section>
+            <h2>Conditions initiales</h2>
+            <p>
+              Supposons que nous ayons une fonction \(v_{0}(x)\) donnant la position initiale de n'importe quel point de notre barre, et une fonction \({\dot{v}}_{0}(x)\) donnant la vitesse initiale de n'importe quel point de notre barre. On a :
+              
+              \[\begin{cases}
+              \begin{array}{r}
+              v_{0}(x) ≝ v(x,0) = \sum_{m = 1}^{\infty}A_{m}X_{m}(x) \\
+              {\dot{v}}_{0}(x) ≝ \dot{v}(x,0) = \sum_{m = 1}^{\infty}\omega_{m}B_{m}X_{m}(x)
+              \end{array}
+              \end{cases}\]
+              
+              En multipliant ces deux équations par \(X_{m}(x)\), en intégrant de \(0\) à \(L\) puis en tenant compte de la relation d'orthogonalité, il vient :
+              
+              \[A_{m} = \int_{0}^{L}v_{0}(x)X_{m}(x)dx\quad\text{ et }\quad B_{m} = \frac{1}{\omega_{m}}\int_{0}^{L}{\dot{v}}_{0}(x)X_{m}(x)dx.\]
+              
+              En conclusion, nous avons trouvé une solution de l'équation diff. respectant les conditions aux limites et les conditions initiales.
+              
+            </p>
+          </section>
+          <section>
+            <h2>Oscillations forcées</h2>
+            <p>
+              Imaginons maintenant que notre système soit soumis à une force extérieure \(f(x,t)\). Nous avions trouvé l'équation suivante : \[\frac{\partial^{2}v(x,t)}{\partial t^{2}} + c_{T}^{2}\frac{\partial^{4}v(x,t)}{\partial x^{4}} = \frac{1}{\rho S}f(x,t)\]
+              
+              Voyons s'il existe une solution de la forme : \[v(x,t) = \sum_{m = 1}^{+ \infty}X_{m}(x)\Phi_{m}(t).\]
+              
+              En injectant dans notre équation différentielle, nous obtenons : \[\sum_{m = 1}^{+ \infty}X_{m}(x)\frac{\partial^{2}\Phi_{m}(t)}{\partial t^{2}} + c_{T}^{2}\Phi_{m(t)}\frac{\partial^{4}X_{m}(x)}{\partial x^{4}} = \frac{1}{\rho S}f(x,t)\]
+              
+              ou encore : \[\sum_{m = 1}^{+ \infty}\left\lbrack \frac{\partial^{2}\Phi_{m}(t)}{\partial t^{2}} + \omega_{m}^{2}\Phi_{m(t)} \right\rbrack X_{m}(x) = \frac{1}{\rho S}f(x,t).\]
+              
+            </p>
+          </section>
+          <section>
+            <h2>Oscillations forcées</h2>
+            <p>
+              En multipliant cette équation par \(X_{n}(x)\) et en intégrant de \(0\) à \(L\), nous obtenons : \[\frac{\partial^{2}\Phi_{n}(t)}{\partial t^{2}} + \omega_{n}^{2}\Phi_{n}(t) = \int_{0}^{L}\frac{1}{\rho S}f(x,t)X_{n}(x)dx.\]
+              
+              Il ne reste ``plus qu'à'' résoudre cette équation différentielle. Nous savons déjà que les solutions de cette équation s'écrivent comme la somme des solutions de l'équation homogène (correspondant au régime libre, ou régime transitoire en présence d'amortissement) et d'une solution particulière (correspondant au régime stationnaire). Afin de ne pas surcharger les calculs, et comme nous nous intéressons surtout au régime stationnaire, nous nous contenterons la plupart du temps de trouver une solution particulière.
+              
+            </p>
+          </section>
+          <section>
+            <h2>Oscillations forcées</h2>
+            <p>
+              En guise d'exemple, et afin de voir une résolution complète, supposons que \(f\) est une fonction sinusoïdale appliquée au point \(x_{0}\) : \[f(x,t) = f_{0}\delta(x - x_{0})\sin(\Omega t)\]
+              
+              En cherchant une solution particulière de la forme : \[\Phi_{n}(t) = A_{n}\sin(\Omega t)\]
+              
+              Nous trouvons la relation suivante : \[A_{n} = \frac{\frac{f_{0}}{\rho S}\int_{0}^{L}\delta(x - x_{0})X_{n}(x)dx}{w_{n}^{2} - \Omega^{2}} = \frac{\frac{f_{0}}{\rho S}X_{n}\left( x_{0} \right)}{w_{n}^{2} - \Omega^{2}}\]
+              
+              Le déplacement s'écrit alors (en régime stationnaire) : \[v(x,t) = \sum_{n = 1}^{\infty}X_{n}(x)\Phi_{n}(t) = \frac{f_{0}}{\rho S}\sum_{n = 1}^{\infty}\frac{X_{n}\left( x_{0} \right)}{w_{n}^{2} - \Omega^{2}}X_{n}(x)\sin(\Omega t)\]
+            </p>
+          </section>
+        </section>
+      </div>
+    </div>
+    <script type="module">
+      import Reveal from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.esm.js"
+      import RevealMath from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/math/math.esm.js"
+      import RevealNotes from "https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/plugin/notes/notes.esm.js"
+      
+      let deck = new Reveal({
+          plugins: [RevealMath.KaTeX, RevealNotes],
+          hash: true,
+          slideNumber: "c/t",
+          totalTime: 7200,
+          scrollable: true,
+      });
+      
+      deck.on('ready', event => {
+          const defaultTime = 120; // 2 minutes par défaut
+          let totalSeconds = 0;
+      
+          document.querySelectorAll('.slides > section').forEach(section => {
+              // On vérifie si c'est une section horizontale ou verticale
+              const verticalSlides = section.querySelectorAll('section');
+              
+              if (verticalSlides.length > 0) {
+                  verticalSlides.forEach(s => {
+                      totalSeconds += parseInt(s.getAttribute('data-timing')) || defaultTime;
+                  });
+              } else {
+                  totalSeconds += parseInt(section.getAttribute('data-timing')) || defaultTime;
+              }
+          });
+      
+          const minutes = Math.floor(totalSeconds / 60);
+          console.log(`⏱️ DURÉE TOTALE PRÉVUE : ${minutes} minutes (${totalSeconds}s)`);
+      });
+      window.deck = deck;
+      deck.initialize();
+    </script>
+  </body>
+</html>
